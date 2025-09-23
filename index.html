@@ -3,7 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Debugro - Coming Soon</title>
+    <title>Debugro - Coming Soon | Debug & Development Tools</title>
+    <meta name="description" content="Debugro is launching soon! Get ready for powerful debugging and development tools. Our innovative platform will revolutionize how developers debug and optimize their code.">
+    <meta name="keywords" content="debugro, debugging tools, development, code optimization, developer tools, coming soon, launch">
+    <meta name="author" content="Debugro">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://debugro.com/">
+    <meta property="og:title" content="Debugro - Coming Soon | Debug & Development Tools">
+    <meta property="og:description" content="Debugro is launching soon! Get ready for powerful debugging and development tools that will revolutionize how developers work.">
+    <meta property="og:image" content="https://debugro.com/og-image.jpg">
+    <meta property="og:site_name" content="Debugro">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://debugro.com/">
+    <meta property="twitter:title" content="Debugro - Coming Soon | Debug & Development Tools">
+    <meta property="twitter:description" content="Debugro is launching soon! Get ready for powerful debugging and development tools that will revolutionize how developers work.">
+    <meta property="twitter:image" content="https://debugro.com/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://debugro.com/">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
@@ -44,53 +74,74 @@
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
-    <div class="text-center max-w-2xl mx-auto fade-in">
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Debugro",
+        "url": "https://debugro.com",
+        "logo": "https://debugro.com/logo.png",
+        "description": "Powerful debugging and development tools for developers",
+        "foundingDate": "2025",
+        "sameAs": [
+            "https://twitter.com/debugro",
+            "https://github.com/debugro"
+        ]
+    }
+    </script>
+    
+    <main class="text-center max-w-2xl mx-auto fade-in" role="main">
         <!-- Logo -->
-        <div class="mb-8 float">
-            <div class="text-4xl md:text-5xl font-bold mb-4 glow-text">
+        <header class="mb-8 float">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 glow-text">
                 <span class="text-[#208cba]">Debug</span><span class="text-gray-100">ro.</span>
-            </div>
-        </div>
+            </h1>
+        </header>
         
         <!-- Main Heading -->
-        <h1 class="text-3xl md:text-5xl font-bold text-gray-100 mb-6 leading-tight slide-in">
-            Something Amazing is
-            <span class="text-[#208cba] block glow-text">Coming Soon</span>
-        </h1>
-        
-        <!-- Description -->
-        <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-lg mx-auto fade-in">
-            We're putting the finishing touches on our new website. Get ready for an incredible experience!
-        </p>
+        <section class="mb-12">
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-100 mb-6 leading-tight slide-in">
+                Something Amazing is
+                <span class="text-[#208cba] block glow-text">Coming Soon</span>
+            </h2>
+            
+            <!-- Description -->
+            <p class="text-lg md:text-xl text-gray-300 mb-0 max-w-lg mx-auto fade-in">
+                We're putting the finishing touches on our innovative debugging and development platform. Get ready for tools that will revolutionize how you debug and optimize your code!
+            </p>
+        </section>
         
         <!-- Countdown Timer -->
-        <div class="bg-gray-900/50 backdrop-blur-lg rounded-2xl p-8 mb-12 glow border border-gray-700/50">
-            <h2 class="text-gray-100 text-xl mb-6 font-semibold">Launch Countdown</h2>
-            <div class="grid grid-cols-4 gap-4 text-center">
-                <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
-                    <div id="days" class="text-2xl md:text-3xl font-bold text-gray-100">--</div>
-                    <div class="text-gray-400 text-sm uppercase tracking-wide">Days</div>
+        <section class="bg-gray-900/50 backdrop-blur-lg rounded-2xl p-4 sm:p-8 mb-12 glow border border-gray-700/50" aria-labelledby="countdown-heading">
+            <h3 id="countdown-heading" class="text-gray-100 text-lg sm:text-xl mb-4 sm:mb-6 font-semibold">Launch Countdown</h3>
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center" role="timer" aria-live="polite">
+                <div class="bg-gray-800/60 rounded-lg p-2 sm:p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
+                    <div id="days" class="text-lg sm:text-2xl md:text-3xl font-bold text-gray-100" aria-label="Days remaining">--</div>
+                    <div class="text-gray-400 text-xs sm:text-sm uppercase tracking-wide">Days</div>
                 </div>
-                <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
-                    <div id="hours" class="text-2xl md:text-3xl font-bold text-gray-100">--</div>
-                    <div class="text-gray-400 text-sm uppercase tracking-wide">Hours</div>
+                <div class="bg-gray-800/60 rounded-lg p-2 sm:p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
+                    <div id="hours" class="text-lg sm:text-2xl md:text-3xl font-bold text-gray-100" aria-label="Hours remaining">--</div>
+                    <div class="text-gray-400 text-xs sm:text-sm uppercase tracking-wide">Hours</div>
                 </div>
-                <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
-                    <div id="minutes" class="text-2xl md:text-3xl font-bold text-gray-100">--</div>
-                    <div class="text-gray-400 text-sm uppercase tracking-wide">Minutes</div>
+                <div class="bg-gray-800/60 rounded-lg p-2 sm:p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
+                    <div id="minutes" class="text-lg sm:text-2xl md:text-3xl font-bold text-gray-100" aria-label="Minutes remaining">--</div>
+                    <div class="text-gray-400 text-xs sm:text-sm uppercase tracking-wide">Min</div>
                 </div>
-                <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
-                    <div id="seconds" class="text-2xl md:text-3xl font-bold text-gray-100">--</div>
-                    <div class="text-gray-400 text-sm uppercase tracking-wide">Seconds</div>
+                <div class="bg-gray-800/60 rounded-lg p-2 sm:p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
+                    <div id="seconds" class="text-lg sm:text-2xl md:text-3xl font-bold text-gray-100" aria-label="Seconds remaining">--</div>
+                    <div class="text-gray-400 text-xs sm:text-sm uppercase tracking-wide">Sec</div>
                 </div>
             </div>
-        </div>
+        </section>
         
         <!-- Footer -->
-        <p class="text-gray-400 text-sm fade-in">
-            © 2025 Debugro. All rights reserved.
-        </p>
-    </div>
+        <footer class="fade-in">
+            <p class="text-gray-400 text-sm">
+                © 2025 Debugro. All rights reserved.
+            </p>
+        </footer>
+    </main>
     
     <script>
         // Set launch date (10 days from now)

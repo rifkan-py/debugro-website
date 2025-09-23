@@ -20,57 +20,74 @@
         .fade-in {
             animation: fadeIn 1s ease-in-out;
         }
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(32, 140, 186, 0.6);
+        }
+        .slide-in {
+            animation: slideIn 1.2s ease-out;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
     <div class="text-center max-w-2xl mx-auto fade-in">
         <!-- Logo -->
-        <div class="mb-8">
-            <div class="text-4xl md:text-5xl font-bold mb-4">
-                <span class="text-[#208cba]">Debug</span><span class="text-white">ro.</span>
+        <div class="mb-8 float">
+            <div class="text-4xl md:text-5xl font-bold mb-4 glow-text">
+                <span class="text-[#208cba]">Debug</span><span class="text-gray-100">ro.</span>
             </div>
         </div>
         
         <!-- Main Heading -->
-        <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+        <h1 class="text-3xl md:text-5xl font-bold text-gray-100 mb-6 leading-tight slide-in">
             Something Amazing is
-            <span class="text-[#208cba] block">Coming Soon</span>
+            <span class="text-[#208cba] block glow-text">Coming Soon</span>
         </h1>
         
         <!-- Description -->
-        <p class="text-lg md:text-xl text-gray-200 mb-12 max-w-lg mx-auto">
+        <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-lg mx-auto fade-in">
             We're putting the finishing touches on our new website. Get ready for an incredible experience!
         </p>
         
         <!-- Countdown Timer -->
-        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-12 glow">
-            <h2 class="text-white text-xl mb-6 font-semibold">Launch Countdown</h2>
+        <div class="bg-gray-900/50 backdrop-blur-lg rounded-2xl p-8 mb-12 glow border border-gray-700/50">
+            <h2 class="text-gray-100 text-xl mb-6 font-semibold">Launch Countdown</h2>
             <div class="grid grid-cols-4 gap-4 text-center">
-                <div class="bg-white/20 rounded-lg p-4">
-                    <div id="days" class="text-2xl md:text-3xl font-bold text-white">--</div>
-                    <div class="text-gray-300 text-sm uppercase tracking-wide">Days</div>
+                <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
+                    <div id="days" class="text-2xl md:text-3xl font-bold text-gray-100">--</div>
+                    <div class="text-gray-400 text-sm uppercase tracking-wide">Days</div>
                 </div>
-                <div class="bg-white/20 rounded-lg p-4">
-                    <div id="hours" class="text-2xl md:text-3xl font-bold text-white">--</div>
-                    <div class="text-gray-300 text-sm uppercase tracking-wide">Hours</div>
+                <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
+                    <div id="hours" class="text-2xl md:text-3xl font-bold text-gray-100">--</div>
+                    <div class="text-gray-400 text-sm uppercase tracking-wide">Hours</div>
                 </div>
-                <div class="bg-white/20 rounded-lg p-4">
-                    <div id="minutes" class="text-2xl md:text-3xl font-bold text-white">--</div>
-                    <div class="text-gray-300 text-sm uppercase tracking-wide">Minutes</div>
+                <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
+                    <div id="minutes" class="text-2xl md:text-3xl font-bold text-gray-100">--</div>
+                    <div class="text-gray-400 text-sm uppercase tracking-wide">Minutes</div>
                 </div>
-                <div class="bg-white/20 rounded-lg p-4">
-                    <div id="seconds" class="text-2xl md:text-3xl font-bold text-white">--</div>
-                    <div class="text-gray-300 text-sm uppercase tracking-wide">Seconds</div>
+                <div class="bg-gray-800/60 rounded-lg p-4 border border-gray-600/30 hover:border-[#208cba]/50 transition-all duration-300">
+                    <div id="seconds" class="text-2xl md:text-3xl font-bold text-gray-100">--</div>
+                    <div class="text-gray-400 text-sm uppercase tracking-wide">Seconds</div>
                 </div>
             </div>
         </div>
         
         <!-- Footer -->
-        <p class="text-gray-300 text-sm">
+        <p class="text-gray-400 text-sm fade-in">
             © 2025 Debugro. All rights reserved.
         </p>
     </div>

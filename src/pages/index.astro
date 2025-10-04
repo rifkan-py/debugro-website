@@ -1,11 +1,56 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// SEO metadata
+const seoData = {
+    title: "Debugro - Software Solutions for Business Growth",
+    description:
+        "Debugro empowers businesses with cutting-edge software solutions designed to deliver performance, security, and growth. Expert mobile, web, desktop and cloud development services.",
+    keywords:
+        "software development, web development, mobile apps, cloud solutions, business software, digital transformation, custom software, enterprise solutions, software consulting, IT services, Sri Lanka",
+    image: "/og-image.jpg",
+    canonicalUrl: "https://debugro.com",
+};
 ---
 
-<Layout>
-	<Welcome />
+<Layout {...seoData}>
+    <main
+        class="relative bg-gradient-to-b from-[var(--color-primary-dark)] to-[#00151e]"
+    >
+        {/* Large Gradient Orb - Top Right */}
+        <div
+            class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[var(--color-primary)]/20 to-transparent blur-3xl animate-float"
+        >
+        </div>
+
+        {/* Medium Gradient Orb - Bottom Left */}
+        <div
+            class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[var(--color-primary-light)]/15 to-transparent blur-2xl animate-float-delayed"
+        >
+        </div>
+
+        {/* Small Gradient Orb - Center Right */}
+        <div
+            class="absolute top-1/2 right-[-5%] w-[300px] h-[300px] rounded-full bg-gradient-to-bl from-[var(--color-primary)]/10 to-transparent blur-xl animate-float-slow"
+        >
+        </div>
+
+        {/* Animated Grid Background */}
+        <div
+            class="absolute inset-0 bg-[linear-gradient(rgba(var(--color-primary-rgb),0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(var(--color-primary-rgb),0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_70%)] animate-grid-flow"
+        >
+        </div>
+
+        {/* Extended Gradient Overlay */}
+        <div class="absolute inset-0 bg-radial-gradient"></div>
+        <div
+            class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[var(--color-primary-dark)]/10"
+        >
+        </div>
+
+        <Hero />
+        <Services />
+    </main>
 </Layout>

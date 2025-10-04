@@ -1,0 +1,83 @@
+---
+interface Props {
+    /**
+     * Button variant style
+     * @default "primary"
+     */
+    variant?: "primary" | "secondary" | "animated";
+
+    /**
+     * Button size
+     * @default "md"
+     */
+    size?: "sm" | "md" | "lg" | "xl";
+
+    /**
+     * Additional CSS classes
+     */
+    class?: string;
+
+    /**
+     * HTML button type
+     * @default "button"
+     */
+    type?: "button" | "submit" | "reset";
+
+    /**
+     * Disabled state
+     * @default false
+     */
+    disabled?: boolean;
+}
+
+const {
+    variant = "primary",
+    size = "md",
+    type = "button",
+    disabled = false,
+    class: className = "",
+} = Astro.props;
+
+// Size classes mapping
+const sizeClasses = {
+    sm: "px-3 py-1.5 text-sm",
+    md: "px-4 py-2 text-base",
+    lg: "px-6 py-2.5 text-lg",
+    xl: "px-8 py-3 text-xl"
+};
+
+// Base classes for all buttons
+const baseClasses = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--color-primary-dark)]";
+
+// Variant classes mapping
+const variantClasses = {
+    primary: "bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/90 text-white focus:ring-[var(--color-primary)]",
+    secondary: "bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 focus:ring-[var(--color-primary)]",
+    animated: `
+        relative bg-[var(--color-primary)] text-white overflow-hidden
+        before:absolute before:inset-0 before:bg-[var(--color-primary-light)]
+        before:translate-x-[-100%] before:hover:translate-x-0 
+        before:transition-transform before:duration-300
+        hover:shadow-lg focus:ring-[var(--color-primary)]
+        [&>span]:relative [&>span]:z-10
+    `
+};
+
+const classes = [
+    baseClasses,
+    sizeClasses[size],
+    variantClasses[variant],
+    className
+].join(" ");
+---
+
+<button
+    type={type}
+    disabled={disabled}
+    class={classes}
+>
+    {variant === "animated" 
+        ? <span><slot /></span>
+        : <slot />
+    }
+</button>

@@ -11,5 +11,6 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [icon()]
+  integrations: [icon()],
+  site: 'https://debugro.com'
 });

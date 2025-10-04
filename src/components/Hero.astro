@@ -1,0 +1,83 @@
+---
+import Button from "./ui/button.astro";
+---
+
+<section class="relative h-[calc(100vh-75px)] w-full overflow-hidden" role="banner" aria-label="Hero section">
+    
+    <div class="container relative mx-auto px-4 h-full flex flex-col items-center justify-center text-center z-10">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[var(--color-primary-light)] font-medium leading-tight mb-6 sm:mb-8 animate-fadeIn backdrop-blur-sm">
+            Turning Complex Problems<br class="hidden sm:block" /> Into Simple Solutions
+        </h1>
+        <p class="text-base sm:text-lg text-[var(--color-primary-light)]/90 max-w-xl sm:max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 animate-fadeIn animation-delay-200">
+            Debugro empowers businesses with cutting-edge software solutions designed to deliver performance, security, and growth.
+        </p>
+        <Button variant="animated" size="xl">Let's Talk</Button>
+    </div>
+</section>
+
+<style>
+    /* Floating animations for the gradient orbs */
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(-20px, 20px); }
+    }
+
+    @keyframes float-delayed {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(20px, -20px); }
+    }
+
+    @keyframes float-slow {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(-10px, -10px); }
+    }
+
+    /* Grid flow animation */
+    @keyframes grid-flow {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(4rem); }
+    }
+
+    .animate-float {
+        animation: float 15s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+        animation: float-delayed 18s ease-in-out infinite;
+    }
+
+    .animate-float-slow {
+        animation: float-slow 20s ease-in-out infinite;
+    }
+
+    .animate-grid-flow {
+        animation: grid-flow 20s linear infinite;
+    }
+
+    /* Radial gradient background */
+    .bg-radial-gradient {
+        background: radial-gradient(
+            circle at center,
+            transparent 0%,
+            rgba(0, 21, 30, 0.8) 100%
+        );
+    }
+
+    /* Enhance the existing animations */
+    .animate-fadeIn {
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    .animation-delay-200 {
+        animation-delay: 200ms;
+    }
+
+    .animation-delay-400 {
+        animation-delay: 400ms;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

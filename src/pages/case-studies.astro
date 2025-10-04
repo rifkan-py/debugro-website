@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// SEO metadata
+const seoData = {
+    title: "Case Studies - Debugro Software Solutions Success Stories",
+    description: "Explore our collection of case studies showcasing successful software solutions we've delivered across various industries. Learn how we help businesses transform and grow.",
+    keywords: "case studies, success stories, software development projects, client success, business transformation",
+    canonicalUrl: "https://debugro.com/case-studies"
+};
+
+// Sample case studies data
+const caseStudies = [
+    {
+        title: "E-commerce Platform Transformation",
+        client: "RetailTech Solutions",
+        industry: "Retail",
+        image: "/images/case-studies/ecommerce-platform.jpg", // You'll need to add these images
+        tags: ["E-commerce", "Web Development", "Cloud Infrastructure"],
+        metrics: [
+            { label: "Performance Improvement", value: "300%" },
+            { label: "Sales Increase", value: "150%" },
+            { label: "Cost Reduction", value: "40%" }
+        ],
+        excerpt: "How we helped a traditional retailer transform their business with a modern e-commerce platform, leading to significant growth in online sales.",
+        slug: "ecommerce-platform-transformation"
+    },
+    {
+        title: "Healthcare Management System",
+        client: "MedCare Innovations",
+        industry: "Healthcare",
+        image: "/images/case-studies/healthcare-system.jpg",
+        tags: ["Healthcare", "Mobile App", "Web Application"],
+        metrics: [
+            { label: "Patient Satisfaction", value: "+85%" },
+            { label: "Processing Time", value: "-60%" },
+            { label: "Data Accuracy", value: "99.9%" }
+        ],
+        excerpt: "Developing an integrated healthcare management system that streamlined operations and improved patient care quality.",
+        slug: "healthcare-management-system"
+    },
+    {
+        title: "Smart Factory Automation",
+        client: "IndustryTech Manufacturing",
+        industry: "Manufacturing",
+        image: "/images/case-studies/factory-automation.jpg",
+        tags: ["IoT", "Industrial Automation", "Data Analytics"],
+        metrics: [
+            { label: "Efficiency Gain", value: "200%" },
+            { label: "Downtime Reduction", value: "75%" },
+            { label: "Energy Savings", value: "45%" }
+        ],
+        excerpt: "Implementation of IoT-based factory automation solution that revolutionized manufacturing processes and improved efficiency.",
+        slug: "smart-factory-automation"
+    }
+];
+---
+
+<Layout {...seoData}>
+    <main class="relative min-h-screen overflow-hidden bg-gradient-to-b from-[var(--color-primary-dark)] to-[#00151e]">
+        {/* Background Elements */}
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(var(--color-primary-rgb),0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(var(--color-primary-rgb),0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_70%)] animate-grid-flow"></div>
+
+        {/* Gradient Orbs */}
+        <div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[var(--color-primary)]/20 to-transparent blur-3xl animate-float"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[var(--color-primary-light)]/15 to-transparent blur-2xl animate-float-delayed"></div>
+
+        {/* Content */}
+        <div class="relative container mx-auto px-4 py-16 md:py-24 z-10">
+            {/* Header */}
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-[var(--color-primary-light)] mb-6">
+                    Case Studies
+                </h1>
+                <p class="text-[var(--color-primary-light)]/80 text-lg max-w-2xl mx-auto">
+                    Explore how we've helped businesses transform and grow through innovative software solutions.
+                </p>
+            </div>
+
+            {/* Case Studies Grid */}
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {caseStudies.map(study => (
+                    <article class="group relative bg-[var(--color-primary-dark)]/50 backdrop-blur-md rounded-xl overflow-hidden border border-[var(--color-primary-light)]/10 hover:border-[var(--color-primary-light)]/20 transition-all duration-300">
+                        <div class="aspect-w-16 aspect-h-9 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-primary-dark)] to-transparent opacity-60 z-10"></div>
+                            <img 
+                                src={study.image} 
+                                alt={study.title}
+                                class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div class="absolute bottom-4 left-4 z-20">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-[var(--color-primary)]/20 backdrop-blur-sm text-[var(--color-primary-light)]">
+                                    {study.industry}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold text-[var(--color-primary-light)] mb-2">
+                                {study.title}
+                            </h2>
+                            <p class="text-[var(--color-primary-light)]/70 text-sm mb-4">
+                                {study.excerpt}
+                            </p>
+
+                            {/* Metrics */}
+                            <div class="grid grid-cols-3 gap-4 mb-4">
+                                {study.metrics.map(metric => (
+                                    <div class="text-center">
+                                        <div class="text-[var(--color-primary)] font-bold">{metric.value}</div>
+                                        <div class="text-[var(--color-primary-light)]/60 text-xs">{metric.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Tags */}
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                {study.tags.map(tag => (
+                                    <span class="text-xs px-2 py-1 rounded-md bg-[var(--color-primary-light)]/5 text-[var(--color-primary-light)]/70">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
+                            {/* Read More Link */}
+                            <a 
+                                href={`/case-studies/${study.slug}`}
+                                class="inline-flex items-center text-[var(--color-primary)] hover:text-[var(--color-primary-light)] transition-colors"
+                            >
+                                Read Case Study
+                                <svg class="w-4 h-4 ml-2 inline group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                ))}
+            </div>
+
+            {/* CTA Section */}
+            <div class="mt-16 text-center">
+                <div class="inline-block p-8 rounded-2xl bg-[var(--color-primary-dark)]/50 backdrop-blur-md border border-[var(--color-primary-light)]/10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[var(--color-primary-light)] mb-4">
+                        Ready to Write Your Success Story?
+                    </h2>
+                    <p class="text-[var(--color-primary-light)]/80 mb-6 max-w-2xl mx-auto">
+                        Let's discuss how we can help transform your business with innovative software solutions.
+                    </p>
+                    <a 
+                        href="/contact"
+                        class="inline-block px-8 py-3 rounded-lg bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-light)] text-white font-medium hover:shadow-lg hover:shadow-[var(--color-primary)]/20 transition-all duration-300"
+                    >
+                        Start Your Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    /* Optional: Add hover effect for case study cards */
+    article {
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+    }
+    
+    article:hover {
+        transform: translateY(-4px);
+    }
+</style>

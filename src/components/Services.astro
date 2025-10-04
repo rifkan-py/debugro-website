@@ -1,0 +1,221 @@
+---
+interface Service {
+    icon: string;
+    title: string;
+    description: string;
+}
+
+const services: Service[] = [
+    {
+        icon: '🌟',
+        title: 'Web Solutions',
+        description: 'Custom web applications and responsive websites built with modern technologies for optimal performance and user experience.'
+    },
+    {
+        icon: '⚡',
+        title: 'Desktop Solutions',
+        description: 'Powerful desktop applications designed to enhance productivity and streamline business operations.'
+    },
+    {
+        icon: '📱',
+        title: 'Mobile App Solutions',
+        description: 'Native and cross-platform mobile applications that deliver seamless experiences across all devices.'
+    },
+    {
+        icon: '☁️',
+        title: 'Cloud Solutions',
+        description: 'Scalable cloud infrastructure and services that ensure reliability, security, and optimal performance.'
+    },
+    {
+        icon: '🎨',
+        title: 'UI/UX Design',
+        description: 'User-centered design solutions that create engaging and intuitive digital experiences.'
+    },
+    {
+        icon: '💼',
+        title: 'Consulting',
+        description: 'Expert guidance and strategic consulting to help businesses leverage technology effectively.'
+    }
+];
+---
+
+<section class="relative py-16 md:py-24">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--color-primary-light)]">
+            Our Services
+        </h2>
+        
+        <div id="servicesGrid" class="services-grid">
+            {services.map((service, index) => (
+                <div class="service-card" data-index={index}>
+                    <div class="service-icon">{service.icon}</div>
+                    <h3 class="text-xl font-semibold mb-3">{service.title}</h3>
+                    <p class="text-[var(--color-primary-light-dark)]">{service.description}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    @media (max-width: 1024px) {
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .service-card {
+        position: relative;
+        background: rgba(var(--color-primary-dark-rgb), 0.3);
+        backdrop-filter: blur(8px);
+        border-radius: 1rem;
+        padding: 2rem;
+        min-height: 300px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+        transform: scale(1.1);
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(var(--color-primary-rgb), 0.1),
+            transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .service-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(var(--color-primary-rgb), 0.08),
+            transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        filter: blur(15px);
+        pointer-events: none;
+    }
+
+    .service-card:hover::before,
+    .service-card:hover::after {
+        opacity: 1;
+    }
+
+    .service-card.neighbor-hover::before {
+        opacity: 0.3;
+    }
+
+    .service-card.neighbor-hover::after {
+        opacity: 0.2;
+    }
+</style>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const grid = document.getElementById('servicesGrid');
+        if (!grid) return;
+
+        let isRunning = false;
+        let frame: number | undefined;
+
+        function updateCardEffects(card: HTMLElement, x: number, y: number, cards: HTMLElement[], cols: number) {
+            card.style.setProperty('--mouse-x', `${Math.round((x / card.clientWidth) * 100)}%`);
+            card.style.setProperty('--mouse-y', `${Math.round((y / card.clientHeight) * 100)}%`);
+
+            const index = parseInt(card.getAttribute('data-index') || '0');
+            cards.forEach(c => c.classList.remove('neighbor-hover'));
+
+            [
+                index - cols, // above
+                index + cols, // below
+                index - 1,    // left
+                index + 1     // right
+            ].forEach(i => {
+                if (i >= 0 && i < cards.length) {
+                    if (i === index - 1 && index % cols === 0) return;
+                    if (i === index + 1 && index % cols === cols - 1) return;
+                    cards[i].classList.add('neighbor-hover');
+                }
+            });
+        }
+
+        function handleMouseMove(e: MouseEvent) {
+            if (isRunning) return;
+            isRunning = true;
+
+            if (frame) {
+                cancelAnimationFrame(frame);
+            }
+
+            frame = requestAnimationFrame(() => {
+                const cards = Array.from(document.querySelectorAll<HTMLElement>('.service-card'));
+                const cols = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+
+                cards.forEach((card) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                        updateCardEffects(card, x, y, cards, cols);
+                    }
+                });
+
+                isRunning = false;
+            });
+        }
+
+        function handleMouseLeave() {
+            if (frame) {
+                cancelAnimationFrame(frame);
+            }
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => card.classList.remove('neighbor-hover'));
+        }
+
+        grid.addEventListener('mousemove', handleMouseMove);
+        grid.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            if (frame) {
+                cancelAnimationFrame(frame);
+            }
+            grid.removeEventListener('mousemove', handleMouseMove);
+            grid.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    });
+</script>

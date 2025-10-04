@@ -1,0 +1,112 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	keywords?: string;
+	image?: string;
+	canonicalUrl?: string;
+}
+
+const {
+	title = "Debugro - Software Solutions",
+	description = "Debugro provides cutting-edge software solutions for businesses.",
+	keywords = "software development, web development, mobile apps",
+	image = "/og-image.jpg",
+	canonicalUrl = "https://debugro.com",
+} = Astro.props;
+
+// Company info for schema
+const companyInfo = {
+	name: "Debugro",
+	url: "https://debugro.com",
+	logo: "https://debugro.com/logo.png",
+	address: {
+		streetAddress: "47/11, Hirimbura Cross RD",
+		addressLocality: "Galle",
+		addressCountry: "Sri Lanka",
+	},
+	contactPoint: {
+		telephone: "+94-76-190-4696",
+		contactType: "customer service",
+	},
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content={companyInfo.name} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+		<meta name="revisit-after" content="7 days" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalUrl} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
+
+		<!-- Schema.org markup for Google -->
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				...companyInfo,
+				description,
+			})}
+		/>
+
+		<!-- Preconnect for Performance -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<Navbar />
+		<slot />
+		<Footer />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		line-height: 1.15;
+		/* better default line-height */
+		-webkit-text-size-adjust: 100%;
+		-moz-tab-size: 4;
+		tab-size: 4;
+		/* font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; */
+		font-family: "Roboto", sans-serif;
+		font-optical-sizing: auto;
+		font-variation-settings: "wdth" 100;
+
+		color-scheme: light dark;
+	}
+</style>

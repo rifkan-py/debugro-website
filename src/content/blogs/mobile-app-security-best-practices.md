@@ -2,9 +2,9 @@
 title: "Mobile App Security Best Practices"
 description: "Essential security practices every mobile app developer should implement to protect user data and prevent common vulnerabilities."
 pubDate: "2025-09-10"
-author: "Lisa Johnson"
-authorRole: "Security Engineer"
-authorAvatar: "https://media.licdn.com/dms/image/v2/D5603AQHhOsFaXUcv-A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719988892844?e=2147483647&v=beta&t=TDU5zf6a2qErzMzVK2-rOCHYGCCKYI9EIXoMsjvCNrU"
+author: "Mohamed Rifkan"
+authorRole: "Founder & Lead Engineer"
+authorAvatar: "/rifkan-200.jpeg"
 image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 featured: false
 tags: ["Mobile", "Security", "iOS", "Android"]

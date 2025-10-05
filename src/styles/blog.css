@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* Blog specific variables */
+:root {
+    /* Base colors from global theme */
+    --blog-bg: var(--color-bg, #121212);
+    --blog-surface: var(--color-surface, #1e1e1e);
+    --blog-border: var(--color-border, #2c2c2c);
+    
+    /* Text variants */
+    --blog-text: var(--color-text, #e0e0e0);
+    --blog-text-muted: var(--color-text-muted, #a0a0a0);
+    --blog-text-bright: var(--color-primary-light, #dcf1fa);
+    
+    /* Primary theme colors */
+    --blog-primary: var(--color-primary, #208cba);
+    --blog-primary-light: var(--color-primary-light, #dcf1fa);
+    --blog-primary-dark: var(--color-primary-dark, #00151ec4);
+    --blog-primary-light-dark: var(--color-primary-light-dark, #002d40);
+    
+    /* Secondary/Accent colors */
+    --blog-secondary: var(--color-secondary, #22d3ee);
+    --blog-secondary-light: var(--color-secondary-light, #67e8f9);
+    --blog-secondary-dark: var(--color-secondary-dark, #0e7490);
+    
+    /* Transparencies */
+    --blog-primary-transparent: rgba(32, 140, 186, 0.2);
+    --blog-primary-dark-transparent: rgba(0, 21, 30, 0.3);
+    --blog-secondary-transparent: rgba(34, 211, 238, 0.2);
+    
+    /* Gradients */
+    --blog-gradient-primary: linear-gradient(to right, var(--blog-primary-light), var(--blog-secondary));
+    --blog-gradient-bg: linear-gradient(to bottom, var(--blog-primary-dark), #00151e);
+}

@@ -2,9 +2,9 @@
 title: "The Impact of AI on Modern Software Development"
 description: "Explore how artificial intelligence is revolutionizing the software development lifecycle, from code generation to testing and deployment."
 pubDate: "2025-09-20"
-author: "Sarah Chen"
-authorRole: "AI Research Lead"
-authorAvatar: "https://media.licdn.com/dms/image/v2/D5603AQHhOsFaXUcv-A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719988892844?e=2147483647&v=beta&t=TDU5zf6a2qErzMzVK2-rOCHYGCCKYI9EIXoMsjvCNrU"
+author: "Mohamed Rifkan"
+authorRole: "Founder & Lead Engineer"
+authorAvatar: "/rifkan-200.jpeg"
 image: "https://images.unsplash.com/photo-1694903110330-cc64b7e1d21d?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 featured: true
 tags: ["AI", "Software Development", "Technology Trends", "Machine Learning"]

@@ -2,9 +2,9 @@
 title: "Building Scalable Cloud Architecture"
 description: "Learn the best practices for designing and implementing cloud architectures that can handle millions of users while maintaining performance and reliability."
 pubDate: "2025-09-15"
-author: "Michael Torres"
-authorRole: "Cloud Architecture Lead"
-authorAvatar: "https://media.licdn.com/dms/image/v2/D5603AQHhOsFaXUcv-A/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719988892844?e=2147483647&v=beta&t=TDU5zf6a2qErzMzVK2-rOCHYGCCKYI9EIXoMsjvCNrU"
+author: "Mohamed Rifkan"
+authorRole: "Founder & Lead Engineer"
+authorAvatar: "/rifkan-200.jpeg"
 image: "https://plus.unsplash.com/premium_photo-1683836722608-60ab4d1b58e5?q=80&w=812&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 featured: false
 tags: ["Cloud Computing", "AWS", "Architecture", "Scalability"]

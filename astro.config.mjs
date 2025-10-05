@@ -12,5 +12,5 @@ export default defineConfig({
   },
 
   integrations: [icon()],
-  site: 'https://debugro.com'
+  site: 'https://debugro.com',
 });

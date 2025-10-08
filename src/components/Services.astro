@@ -3,219 +3,235 @@ interface Service {
     icon: string;
     title: string;
     description: string;
+    color: string;
 }
 
 const services: Service[] = [
     {
-        icon: '🌟',
-        title: 'Web Solutions',
-        description: 'Custom web applications and responsive websites built with modern technologies for optimal performance and user experience.'
-    },
-    {
-        icon: '⚡',
-        title: 'Desktop Solutions',
-        description: 'Powerful desktop applications designed to enhance productivity and streamline business operations.'
+        icon: '🌐',
+        title: 'Web Development',
+        description: 'Modern, responsive websites and web applications built with cutting-edge technologies.',
+        color: 'from-blue-500 to-cyan-500'
     },
     {
         icon: '📱',
-        title: 'Mobile App Solutions',
-        description: 'Native and cross-platform mobile applications that deliver seamless experiences across all devices.'
+        title: 'Mobile Apps',
+        description: 'Native and cross-platform mobile applications for iOS and Android.',
+        color: 'from-purple-500 to-pink-500'
     },
     {
         icon: '☁️',
         title: 'Cloud Solutions',
-        description: 'Scalable cloud infrastructure and services that ensure reliability, security, and optimal performance.'
+        description: 'Scalable cloud infrastructure and deployment strategies for modern businesses.',
+        color: 'from-green-500 to-emerald-500'
     },
     {
         icon: '🎨',
         title: 'UI/UX Design',
-        description: 'User-centered design solutions that create engaging and intuitive digital experiences.'
+        description: 'User-centered design that creates engaging and intuitive digital experiences.',
+        color: 'from-orange-500 to-red-500'
     },
     {
-        icon: '💼',
-        title: 'Consulting',
-        description: 'Expert guidance and strategic consulting to help businesses leverage technology effectively.'
+        icon: '⚡',
+        title: 'Performance Optimization',
+        description: 'Speed up your applications and improve user experience with our optimization services.',
+        color: 'from-yellow-500 to-orange-500'
+    },
+    {
+        icon: '🔒',
+        title: 'Security & Consulting',
+        description: 'Comprehensive security audits and strategic technology consulting.',
+        color: 'from-indigo-500 to-purple-500'
     }
 ];
 ---
 
-<section class="relative py-16 md:py-24">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[var(--color-primary-light)]">
-            Our Services
-        </h2>
-        
-        <div id="servicesGrid" class="services-grid">
-            {services.map((service, index) => (
-                <div class="service-card" data-index={index}>
-                    <div class="service-icon">{service.icon}</div>
-                    <h3 class="text-xl font-semibold mb-3">{service.title}</h3>
-                    <p class="text-[var(--color-primary-light-dark)]">{service.description}</p>
+<section class="relative py-16 md:py-20 lg:py-24 bg-[var(--color-primary-dark)]">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, var(--color-primary) 1px, transparent 0); background-size: 20px 20px;"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Left Content -->
+            <div class="space-y-8">
+                <!-- Header -->
+                <div class="space-y-6">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 border border-[var(--color-primary)]/30">
+                        <span class="text-sm font-medium text-[var(--color-primary)]">✨ Our Services</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                        <span class="bg-gradient-to-r from-[var(--color-text)] to-[var(--color-text-muted)] bg-clip-text text-transparent">
+                            Unleash Your Business's Potential with
+                        </span>
+                        <br>
+                        <span class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent">
+                            Transformative Digital Solutions
+                        </span>
+                    </h2>
+                    
+                    <p class="text-lg text-[var(--color-text-muted)] leading-relaxed max-w-xl">
+                        We deliver cutting-edge technology solutions that drive growth, enhance efficiency, and transform your business operations.
+                    </p>
                 </div>
-            ))}
+
+                <!-- Services List -->
+                <div class="space-y-4">
+                    {services.map((service, index) => (
+                        <div 
+                            class="group flex items-start space-x-4 p-4 rounded-xl bg-[var(--color-surface)]/50 backdrop-blur-sm border border-[var(--color-border)]/50 hover:border-[var(--color-primary)]/50 transition-all duration-300 hover:transform hover:scale-[1.02] cursor-pointer"
+                            style={`animation-delay: ${index * 100}ms`}
+                        >
+                            <div class={`flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300`}>
+                                {service.icon}
+                            </div>
+                            
+                            <div class="flex-1 min-w-0">
+                                <h3 class="font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-300">
+                                    {service.title}
+                                </h3>
+                                <p class="text-sm text-[var(--color-text-muted)] mt-1 leading-relaxed">
+                                    {service.description}
+                                </p>
+                            </div>
+                            
+                            <div class="flex-shrink-0 text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <!-- CTA Button -->
+                <div class="pt-4">
+                    <a 
+                        href="/contact" 
+                        class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 group"
+                    >
+                        <span>Get Started Today</span>
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Visual -->
+            <div class="relative">
+                <!-- Main Device Mockup -->
+                <div class="relative mx-auto max-w-md lg:max-w-lg">
+                    <!-- Device Frame -->
+                    <div class="relative bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-primary-dark)] p-6 rounded-3xl shadow-2xl border border-[var(--color-border)]">
+                        <!-- Screen -->
+                        <div class="bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-secondary)]/10 rounded-2xl p-6 space-y-4">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between">
+                                <div class="w-20 h-3 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] rounded-full"></div>
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 bg-[var(--color-primary)] rounded-full"></div>
+                                    <div class="w-3 h-3 bg-[var(--color-secondary)] rounded-full"></div>
+                                    <div class="w-3 h-3 bg-[var(--color-warning)] rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Content Blocks -->
+                            <div class="space-y-3">
+                                <div class="h-8 bg-gradient-to-r from-[var(--color-primary)]/30 to-transparent rounded"></div>
+                                <div class="h-6 bg-gradient-to-r from-[var(--color-secondary)]/20 to-transparent rounded w-3/4"></div>
+                                <div class="h-6 bg-gradient-to-r from-[var(--color-primary)]/20 to-transparent rounded w-1/2"></div>
+                            </div>
+                            
+                            <!-- Chart Area -->
+                            <div class="h-32 bg-gradient-to-t from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 rounded-lg flex items-end justify-around p-4">
+                                <div class="w-4 bg-gradient-to-t from-[var(--color-primary)] to-[var(--color-secondary)] rounded-t" style="height: 60%"></div>
+                                <div class="w-4 bg-gradient-to-t from-[var(--color-secondary)] to-[var(--color-primary)] rounded-t" style="height: 80%"></div>
+                                <div class="w-4 bg-gradient-to-t from-[var(--color-primary)] to-[var(--color-secondary)] rounded-t" style="height: 40%"></div>
+                                <div class="w-4 bg-gradient-to-t from-[var(--color-secondary)] to-[var(--color-primary)] rounded-t" style="height: 90%"></div>
+                                <div class="w-4 bg-gradient-to-t from-[var(--color-primary)] to-[var(--color-secondary)] rounded-t" style="height: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Device Details -->
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-[var(--color-border)] rounded-full"></div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 rounded-2xl backdrop-blur-sm border border-[var(--color-primary)]/30 flex items-center justify-center text-2xl animate-float">
+                        💡
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-[var(--color-secondary)]/20 to-[var(--color-primary)]/20 rounded-xl backdrop-blur-sm border border-[var(--color-secondary)]/30 flex items-center justify-center text-xl animate-float-delay">
+                        🚀
+                    </div>
+                    
+                    <!-- Background Orbs -->
+                    <div class="absolute top-10 -left-10 w-32 h-32 bg-gradient-to-br from-[var(--color-primary)]/10 to-transparent rounded-full blur-xl animate-pulse"></div>
+                    <div class="absolute bottom-10 -right-10 w-24 h-24 bg-gradient-to-br from-[var(--color-secondary)]/10 to-transparent rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <style>
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(5deg); }
     }
-
-    @media (max-width: 1024px) {
-        .services-grid {
-            grid-template-columns: repeat(2, 1fr);
+    
+    @keyframes float-delay {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-8px) rotate(-3deg); }
+    }
+    
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-float-delay {
+        animation: float-delay 3s ease-in-out infinite;
+        animation-delay: 1.5s;
+    }
+    
+    /* Smooth entrance animation for service items */
+    .group {
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: slideInLeft 0.6s ease-out forwards;
+    }
+    
+    @keyframes slideInLeft {
+        to {
+            opacity: 1;
+            transform: translateX(0);
         }
     }
-
-    @media (max-width: 768px) {
-        .services-grid {
-            grid-template-columns: 1fr;
-        }
+    
+    /* Hover effect enhancements */
+    .group:hover .animate-float {
+        animation-duration: 2s;
     }
-
-    .service-card {
-        position: relative;
-        background: rgba(var(--color-primary-dark-rgb), 0.3);
-        backdrop-filter: blur(8px);
-        border-radius: 1rem;
-        padding: 2rem;
-        min-height: 300px;
-        transition: transform 0.3s ease;
-        cursor: pointer;
-        overflow: hidden;
+    
+    /* Custom scrollbar for better UX */
+    .container {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-primary) var(--color-surface);
     }
-
-    .service-icon {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        transition: transform 0.3s ease;
+    
+    .container::-webkit-scrollbar {
+        width: 6px;
     }
-
-    .service-card:hover .service-icon {
-        transform: scale(1.1);
+    
+    .container::-webkit-scrollbar-track {
+        background: var(--color-surface);
     }
-
-    .service-card::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-            800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            rgba(var(--color-primary-rgb), 0.1),
-            transparent 40%
-        );
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .service-card::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            rgba(var(--color-primary-rgb), 0.08),
-            transparent 40%
-        );
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        filter: blur(15px);
-        pointer-events: none;
-    }
-
-    .service-card:hover::before,
-    .service-card:hover::after {
-        opacity: 1;
-    }
-
-    .service-card.neighbor-hover::before {
-        opacity: 0.3;
-    }
-
-    .service-card.neighbor-hover::after {
-        opacity: 0.2;
+    
+    .container::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 3px;
     }
 </style>
-
-<script>
-    document.addEventListener('astro:page-load', () => {
-        const grid = document.getElementById('servicesGrid');
-        if (!grid) return;
-
-        let isRunning = false;
-        let frame: number | undefined;
-
-        function updateCardEffects(card: HTMLElement, x: number, y: number, cards: HTMLElement[], cols: number) {
-            card.style.setProperty('--mouse-x', `${Math.round((x / card.clientWidth) * 100)}%`);
-            card.style.setProperty('--mouse-y', `${Math.round((y / card.clientHeight) * 100)}%`);
-
-            const index = parseInt(card.getAttribute('data-index') || '0');
-            cards.forEach(c => c.classList.remove('neighbor-hover'));
-
-            [
-                index - cols, // above
-                index + cols, // below
-                index - 1,    // left
-                index + 1     // right
-            ].forEach(i => {
-                if (i >= 0 && i < cards.length) {
-                    if (i === index - 1 && index % cols === 0) return;
-                    if (i === index + 1 && index % cols === cols - 1) return;
-                    cards[i].classList.add('neighbor-hover');
-                }
-            });
-        }
-
-        function handleMouseMove(e: MouseEvent) {
-            if (isRunning) return;
-            isRunning = true;
-
-            if (frame) {
-                cancelAnimationFrame(frame);
-            }
-
-            frame = requestAnimationFrame(() => {
-                const cards = Array.from(document.querySelectorAll<HTMLElement>('.service-card'));
-                const cols = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
-
-                cards.forEach((card) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-                        updateCardEffects(card, x, y, cards, cols);
-                    }
-                });
-
-                isRunning = false;
-            });
-        }
-
-        function handleMouseLeave() {
-            if (frame) {
-                cancelAnimationFrame(frame);
-            }
-            const cards = document.querySelectorAll('.service-card');
-            cards.forEach(card => card.classList.remove('neighbor-hover'));
-        }
-
-        grid.addEventListener('mousemove', handleMouseMove);
-        grid.addEventListener('mouseleave', handleMouseLeave);
-
-        return () => {
-            if (frame) {
-                cancelAnimationFrame(frame);
-            }
-            grid.removeEventListener('mousemove', handleMouseMove);
-            grid.removeEventListener('mouseleave', handleMouseLeave);
-        };
-    });
-</script>

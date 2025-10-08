@@ -9,7 +9,18 @@ const navItems = [
     { href: '/contact', label: 'Contact', ariaLabel: 'Contact information' },
 ];
 
+// Get current pathname for active link detection
+const currentPath = Astro.url.pathname;
+
+// Function to check if link is active
+const isActiveLink = (href: string) => {
+    if (href === '/' && currentPath === '/') return true;
+    if (href !== '/' && currentPath.startsWith(href)) return true;
+    return false;
+};
+
 const defaultLinkClass = "relative nav-link py-2 hover:text-white transition-colors duration-200";
+const activeLinkClass = "relative nav-link py-2 text-white transition-colors duration-200 active";
 ---
 
 <nav
@@ -19,7 +30,7 @@ const defaultLinkClass = "relative nav-link py-2 hover:text-white transition-col
 >
     <div class="container mx-auto flex justify-between items-center h-full px-4 md:px-5">
         <div>
-            <a href="/" class="inline-block">
+            <a href="/" class={`inline-block ${isActiveLink('/') ? 'active' : ''}`}>
                 <h1 class="text-base md:text-lg font-bold flex">
                     <span class="text-[var(--color-primary)]">Debug</span>
                     <span class="text-[var(--color-primary-light)]">ro.</span>
@@ -45,7 +56,7 @@ const defaultLinkClass = "relative nav-link py-2 hover:text-white transition-col
                 <a
                     href={item.href}
                     aria-label={item.ariaLabel}
-                    class={defaultLinkClass}
+                    class={isActiveLink(item.href) ? activeLinkClass : defaultLinkClass}
                 >
                     {item.label}
                 </a>
@@ -62,7 +73,7 @@ const defaultLinkClass = "relative nav-link py-2 hover:text-white transition-col
                     <a
                         href={item.href}
                         aria-label={item.ariaLabel}
-                        class="block py-3 px-4 rounded-lg transition-colors duration-300 hover:bg-white/10"
+                        class={`block py-3 px-4 rounded-lg transition-colors duration-300 hover:bg-white/10 ${isActiveLink(item.href) ? 'bg-[var(--color-primary)]/20 text-white font-medium' : ''}`}
                     >
                         {item.label}
                     </a>
@@ -88,6 +99,22 @@ const defaultLinkClass = "relative nav-link py-2 hover:text-white transition-col
 
     .nav-link:hover::after {
         width: 100%;
+    }
+
+    /* Active link styles */
+    .nav-link.active::after {
+        width: 100%;
+        background: var(--color-secondary);
+    }
+
+    .nav-link.active {
+        color: white;
+        font-weight: 500;
+    }
+
+    /* Logo active state */
+    a.active h1 span:first-child {
+        color: var(--color-secondary);
     }
 
     /* Mobile menu button animation */

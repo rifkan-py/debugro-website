@@ -51,5 +51,114 @@ const seoData = {
         </div>
 
         <Hero />
+        <Services />
     </main>
 </Layout>
+
+<style>
+    /* Background animations from main page */
+    .bg-radial-gradient {
+        background: radial-gradient(
+            ellipse at center,
+            rgba(var(--color-primary-rgb), 0.1) 0%,
+            transparent 70%
+        );
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    @keyframes float-delayed {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-15px) rotate(-180deg); }
+    }
+
+    @keyframes float-slow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(90deg); }
+    }
+
+    @keyframes float-geometric {
+        0%, 100% { transform: translateY(0px) rotate(45deg); }
+        50% { transform: translateY(-15px) rotate(225deg); }
+    }
+
+    @keyframes float-geometric-delayed {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    @keyframes float-geometric-slow {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-10px) scale(1.2); }
+    }
+
+    @keyframes grid-flow {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-4rem, -4rem); }
+    }
+
+    @keyframes fade-in-up {
+        from { 
+            opacity: 0; 
+            transform: translateY(30px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+
+    /* Animation classes */
+    .animate-float { animation: float 20s ease-in-out infinite; }
+    .animate-float-delayed { animation: float-delayed 25s ease-in-out infinite; animation-delay: -5s; }
+    .animate-float-slow { animation: float-slow 30s ease-in-out infinite; animation-delay: -10s; }
+    .animate-float-geometric { animation: float-geometric 8s ease-in-out infinite; }
+    .animate-float-geometric-delayed { animation: float-geometric-delayed 10s ease-in-out infinite; animation-delay: -3s; }
+    .animate-float-geometric-slow { animation: float-geometric-slow 12s ease-in-out infinite; animation-delay: -6s; }
+    .animate-grid-flow { animation: grid-flow 40s linear infinite; }
+    .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; opacity: 0; }
+
+    /* Animation delays */
+    .animation-delay-100 { animation-delay: 100ms; }
+    .animation-delay-200 { animation-delay: 200ms; }
+    .animation-delay-300 { animation-delay: 300ms; }
+    .animation-delay-400 { animation-delay: 400ms; }
+    .animation-delay-500 { animation-delay: 500ms; }
+    .animation-delay-600 { animation-delay: 600ms; }
+
+    /* CSS variables */
+    :root {
+        --color-primary-rgb: 32, 140, 186;
+        --color-secondary-rgb: 34, 211, 238;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+
+    /* Performance optimizations */
+    .animate-float,
+    .animate-float-delayed,
+    .animate-float-slow,
+    .animate-float-geometric,
+    .animate-float-geometric-delayed,
+    .animate-float-geometric-slow {
+        will-change: transform;
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+</style>

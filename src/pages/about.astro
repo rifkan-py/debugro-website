@@ -14,35 +14,11 @@ const team = [
         role: "Founder & Lead Developer",
         image: "https://avatars.githubusercontent.com/u/59793466?v=4",
         bio: "Full-stack developer with 5+ years of experience in building scalable applications. Expertise in React, Node.js, and cloud architecture.",
-        skills: ["Full Stack Development", "Cloud Architecture", "Team Leadership"],
+        skills: ["Full Stack Development", "Cloud Architecture", "Web Development", "Mobile Development", "DevOps"],
         social: {
             linkedin: "https://www.linkedin.com/in/mohamed-rifkan-b38218214/",
             github: "https://github.com/rifkan-py",
-            twitter: "https://twitter.com/johndoe"
-        }
-    },
-    {
-        name: "Jane Smith",
-        role: "Technical Lead & DevOps Specialist",
-        image: "/team/tech-lead.jpg",
-        bio: "DevOps expert with strong background in CI/CD pipelines and cloud infrastructure. Passionate about automation and scalable solutions.",
-        skills: ["DevOps", "Cloud Infrastructure", "System Architecture"],
-        social: {
-            linkedin: "https://linkedin.com/in/janesmith",
-            github: "https://github.com/janesmith",
-            twitter: "https://twitter.com/janesmith"
-        }
-    },
-    {
-        name: "Mike Johnson",
-        role: "Mobile Development Lead",
-        image: "/team/mobile-lead.jpg",
-        bio: "Mobile development specialist with expertise in iOS and Android. Focused on creating seamless user experiences across platforms.",
-        skills: ["Mobile Development", "UI/UX Design", "Cross-platform Solutions"],
-        social: {
-            linkedin: "https://linkedin.com/in/mikejohnson",
-            github: "https://github.com/mikejohnson",
-            twitter: "https://twitter.com/mikejohnson"
+            twitter: "#"
         }
     }
 ];
@@ -70,22 +46,7 @@ const values = [
     }
 ];
 
-const testimonials = [
-    {
-        text: "Debugro transformed our business with their innovative solutions. Their team's expertise and dedication are unmatched.",
-        author: "Sarah Wilson",
-        position: "CEO, TechCorp",
-        company: "TechCorp",
-        image: "/testimonials/client1.jpg"
-    },
-    {
-        text: "Working with Debugro has been a game-changer. Their attention to detail and commitment to quality is exceptional.",
-        author: "Michael Chen",
-        position: "CTO, InnovateTech",
-        company: "InnovateTech",
-        image: "/testimonials/client2.jpg"
-    }
-];
+
 ---
 
 <Layout {...seoData}>
@@ -99,7 +60,7 @@ const testimonials = [
                         <span class="text-[var(--color-primary)]">Digital Reality</span>
                     </h1>
                     <p class="text-xl text-gray-300 mb-8">
-                        We're a team of passionate developers dedicated to creating innovative
+                        I'm a passionate developer dedicated to creating innovative
                         software solutions that drive business growth.
                     </p>
                 </div>
@@ -112,30 +73,20 @@ const testimonials = [
         <!-- Story Section -->
         <section class="py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-3xl font-bold text-white mb-6">Our Story</h2>
-                        <p class="text-gray-300 mb-6">
-                            Founded in 2023, Debugro emerged from a shared vision to revolutionize
-                            software development in Sri Lanka. Our journey began with a simple
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-white mb-8">My Story</h2>
+                    <div class="space-y-6 text-lg text-gray-300">
+                        <p>
+                            Founded in 2023, Debugro emerged from my passion to revolutionize
+                            software development in Sri Lanka. My journey began with a simple
                             belief: that exceptional software should be accessible to businesses
                             of all sizes.
                         </p>
-                        <p class="text-gray-300">
-                            Today, we're proud to be at the forefront of technological
+                        <p>
+                            Today, I'm proud to be at the forefront of technological
                             innovation, helping businesses across the globe achieve their digital
-                            transformation goals.
+                            transformation goals through personalized, high-quality solutions.
                         </p>
-                    </div>
-                    <div class="relative">
-                        <div class="aspect-video rounded-2xl overflow-hidden">
-                            <img
-                                src="/about/office.jpg"
-                                alt="Debugro office"
-                                class="w-full h-full object-cover"
-                            />
-                        </div>
-                        <div class="absolute inset-0 bg-[var(--color-primary)]/10 rounded-2xl"></div>
                     </div>
                 </div>
             </div>
@@ -146,7 +97,7 @@ const testimonials = [
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-12">
                     <div class="bg-[var(--color-primary-dark)]/80 p-8 rounded-2xl border border-[var(--color-primary-light-dark)]/30">
-                        <h3 class="text-2xl font-bold text-white mb-4">Our Mission</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4">My Mission</h3>
                         <p class="text-gray-300">
                             To empower businesses with innovative software solutions that drive
                             growth, efficiency, and digital transformation while maintaining the
@@ -154,10 +105,10 @@ const testimonials = [
                         </p>
                     </div>
                     <div class="bg-[var(--color-primary-dark)]/80 p-8 rounded-2xl border border-[var(--color-primary-light-dark)]/30">
-                        <h3 class="text-2xl font-bold text-white mb-4">Our Vision</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4">My Vision</h3>
                         <p class="text-gray-300">
-                            To become the leading software development partner in Sri Lanka,
-                            recognized globally for our innovative solutions, technical
+                            To become a leading software development partner in Sri Lanka,
+                            recognized globally for innovative solutions, technical
                             excellence, and commitment to client success.
                         </p>
                     </div>
@@ -168,7 +119,7 @@ const testimonials = [
         <!-- Values Section -->
         <section class="py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Values</h2>
+                <h2 class="text-3xl font-bold text-white text-center mb-12">My Values</h2>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {values.map(value => (
                         <div class="bg-[var(--color-primary-dark)]/80 p-6 rounded-xl border border-[var(--color-primary-light-dark)]/30 text-center">
@@ -184,8 +135,9 @@ const testimonials = [
         <!-- Team Section -->
         <section class="py-16 bg-[var(--color-primary-dark)]/50">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">Meet Our Team</h2>
-                <div class="grid md:grid-cols-3 gap-8">
+                <h2 class="text-3xl font-bold text-white text-center mb-12">About Me</h2>
+                <div class="flex justify-center">
+                    <div class="max-w-md">
                     {team.map(member => (
                         <div class="bg-[var(--color-primary-dark)]/80 rounded-xl overflow-hidden border border-[var(--color-primary-light-dark)]/30 group">
                             <div class="aspect-square overflow-hidden">
@@ -242,7 +194,7 @@ const testimonials = [
         <!-- Development Approach -->
         <section class="py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Approach</h2>
+                <h2 class="text-3xl font-bold text-white text-center mb-12">My Approach</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="bg-[var(--color-primary-dark)]/80 p-6 rounded-xl border border-[var(--color-primary-light-dark)]/30">
                         <div class="text-[var(--color-primary)] text-2xl font-bold mb-4">01</div>
@@ -268,72 +220,54 @@ const testimonials = [
             </div>
         </section>
 
-        <!-- Testimonials -->
-        <section class="py-16 bg-[var(--color-primary-dark)]/50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">What Clients Say</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    {testimonials.map(testimonial => (
-                        <div class="bg-[var(--color-primary-dark)]/80 p-8 rounded-xl border border-[var(--color-primary-light-dark)]/30">
-                            <div class="flex items-center gap-4 mb-6">
-                                <img
-                                    src={testimonial.image}
-                                    alt={testimonial.author}
-                                    class="w-12 h-12 rounded-full"
-                                />
-                                <div>
-                                    <div class="font-medium text-white">{testimonial.author}</div>
-                                    <div class="text-gray-400 text-sm">{testimonial.position}</div>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 italic mb-4">"{testimonial.text}"</p>
-                            <div class="text-[var(--color-primary)]">{testimonial.company}</div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
         <!-- Call to Action -->
         <section class="py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-[var(--color-primary-dark)]/80 rounded-2xl border border-[var(--color-primary-light-dark)]/30 p-8 md:p-12">
+                <div class="bg-[var(--color-primary-dark)]/80 rounded-3xl border-2 p-8 md:p-12 relative border-gradient-animated">
                     <div class="max-w-3xl mx-auto text-center">
                         <h2 class="text-3xl font-bold text-white mb-6">Ready to Transform Your Ideas into Reality?</h2>
                         <p class="text-gray-300 mb-8">
-                            Let's discuss how we can help you achieve your digital transformation goals.
+                            Let's discuss how I can help you achieve your digital transformation goals.
                         </p>
                         <a
                             href="/contact"
-                            class="inline-block px-8 py-3 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-light-dark)] transition-colors duration-200"
+                            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 group"
                         >
-                            Get in Touch
+                            <span>Get in Touch</span>
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Partners Section -->
-        <section class="py-16">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Partners</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    {/* Add partner logos here */}
-                    <div class="bg-white/5 rounded-lg p-6 flex items-center justify-center">
-                        <img src="/partners/partner1.png" alt="Partner 1" class="h-12 opacity-75 hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div class="bg-white/5 rounded-lg p-6 flex items-center justify-center">
-                        <img src="/partners/partner2.png" alt="Partner 2" class="h-12 opacity-75 hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div class="bg-white/5 rounded-lg p-6 flex items-center justify-center">
-                        <img src="/partners/partner3.png" alt="Partner 3" class="h-12 opacity-75 hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div class="bg-white/5 rounded-lg p-6 flex items-center justify-center">
-                        <img src="/partners/partner4.png" alt="Partner 4" class="h-12 opacity-75 hover:opacity-100 transition-opacity" />
-                    </div>
-                </div>
-            </div>
-        </section>
+        <style>
+            @keyframes border-gradient {
+                0% {
+                    border-image: linear-gradient(0deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+                25% {
+                    border-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+                50% {
+                    border-image: linear-gradient(180deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+                75% {
+                    border-image: linear-gradient(270deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+                100% {
+                    border-image: linear-gradient(360deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+            }
+            
+            .border-gradient-animated {
+                border-image: linear-gradient(0deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                animation: border-gradient 2s linear infinite;
+            }
+        </style>
+
+
     </main>
 </Layout>

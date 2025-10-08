@@ -2,82 +2,128 @@
 import Button from "./ui/button.astro";
 ---
 
-<section class="relative h-[calc(100vh-75px)] w-full overflow-hidden" role="banner" aria-label="Hero section">
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    {/* Background Gradient */}
+    <div class="absolute top-0 z-0 h-screen w-screen bg-[var(--color-primary-dark)]/10 bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(var(--color-primary-rgb),0.15),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(var(--color-primary-rgb),0.3),rgba(255,255,255,0))]"></div>
     
-    <div class="container relative mx-auto px-4 h-full flex flex-col items-center justify-center text-center z-10">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[var(--color-primary-light)] font-medium leading-tight mb-6 sm:mb-8 animate-fadeIn backdrop-blur-sm">
-            Turning Complex Problems<br class="hidden sm:block" /> Into Simple Solutions
-        </h1>
-        <p class="text-base sm:text-lg text-[var(--color-primary-light)]/90 max-w-xl sm:max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 animate-fadeIn animation-delay-200">
-            Debugro empowers businesses with cutting-edge software solutions designed to deliver performance, security, and growth.
-        </p>
-        <Button variant="animated" size="xl">Let's Talk</Button>
+    {/* RetroGrid Background */}
+    <div class="retro-grid absolute inset-0 pointer-events-none overflow-hidden opacity-30" style="perspective: 200px;">
+        <div class="absolute inset-0" style="transform: rotateX(65deg);">
+            <div class="retro-grid-pattern animate-retro-grid" style="
+                background-image: linear-gradient(to right, var(--color-primary) 1px, transparent 0), linear-gradient(to bottom, var(--color-primary) 1px, transparent 0);
+                background-repeat: repeat;
+                background-size: 60px 60px;
+                height: 300vh;
+                width: 600vw;
+                margin-left: -200%;
+                transform-origin: 100% 0 0;
+                position: absolute;
+                inset: 0;
+            "></div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-primary-dark)] to-transparent to-90%"></div>
+    </div>
+
+    {/* Main Content */}
+    <div class="relative z-10 max-w-screen-xl mx-auto px-4 py-28 gap-12 md:px-8">
+        <div class="space-y-5 max-w-3xl leading-0 lg:leading-5 mx-auto text-center">
+            
+            {/* Badge */}
+            <div class="inline-flex items-center px-5 py-2 bg-gradient-to-tr from-[var(--color-primary)]/20 via-[var(--color-secondary)]/10 to-transparent border-2 border-[var(--color-primary)]/30 rounded-3xl text-sm text-[var(--color-primary-light)] font-medium group hover:border-[var(--color-primary)]/50 transition-all duration-300">
+                Software Development Excellence
+                <svg class="inline w-4 h-4 ml-2 group-hover:translate-x-1 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </div>
+
+            {/* Main Heading */}
+            <h1 class="text-4xl tracking-tighter font-bold md:text-6xl bg-clip-text text-transparent bg-[linear-gradient(180deg,_var(--color-text)_0%,_var(--color-text-muted)_100%)]">
+                Debug your software,
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]">
+                    Build your future
+                </span>
+            </h1>
+
+            {/* Description */}
+            <p class="max-w-2xl mx-auto text-[var(--color-text-muted)] text-lg">
+                We build innovative, scalable software that turns your challenges into advantages. 
+                Expert development services for modern businesses.
+            </p>
+
+            {/* CTA Buttons */}
+            <div class="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0 pt-6">
+                {/* Primary Button with Spinning Border */}
+                <span class="relative inline-block overflow-hidden rounded-full p-[1.5px]">
+                    <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,var(--color-secondary)_0%,var(--color-primary)_50%,var(--color-secondary)_100%)]"></span>
+                    <div class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[var(--color-bg)] text-xs font-medium backdrop-blur-3xl">
+                        <a
+                            href="/contact"
+                            class="inline-flex rounded-full text-center group items-center w-full justify-center bg-gradient-to-tr from-[var(--color-surface)]/80 via-[var(--color-primary)]/30 to-transparent text-[var(--color-text)] border border-[var(--color-border)] hover:bg-gradient-to-tr hover:from-[var(--color-surface)] hover:via-[var(--color-primary)]/40 hover:to-transparent hover:border-[var(--color-primary)] transition-all sm:w-auto py-4 px-10 font-semibold"
+                        >
+                            let's talk
+                            <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17l5-5-5-5M6 12h12"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </span>
+            </div>
+        </div>
     </div>
 </section>
 
 <style>
-    /* Floating animations for the gradient orbs */
-    @keyframes float {
-        0%, 100% { transform: translate(0, 0); }
-        50% { transform: translate(-20px, 20px); }
+    /* RetroGrid Animation */
+    @keyframes retro-grid {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-60px); }
     }
 
-    @keyframes float-delayed {
-        0%, 100% { transform: translate(0, 0); }
-        50% { transform: translate(20px, -20px); }
+    .animate-retro-grid {
+        animation: retro-grid 3s linear infinite;
     }
 
-    @keyframes float-slow {
-        0%, 100% { transform: translate(0, 0); }
-        50% { transform: translate(-10px, -10px); }
+    /* Performance optimizations */
+    .animate-retro-grid {
+        will-change: transform;
     }
 
-    /* Grid flow animation */
-    @keyframes grid-flow {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(4rem); }
+    /* Smooth text rendering */
+    h1 {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
 
-    .animate-float {
-        animation: float 15s ease-in-out infinite;
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+        h1 { 
+            font-size: 2.5rem; 
+            line-height: 1.1; 
+        }
+        .retro-grid {
+            opacity: 0.3;
+        }
     }
 
-    .animate-float-delayed {
-        animation: float-delayed 18s ease-in-out infinite;
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
     }
 
-    .animate-float-slow {
-        animation: float-slow 20s ease-in-out infinite;
+    /* Fix potential overflow */
+    section {
+        max-width: 100vw;
+        position: relative;
+        background: linear-gradient(to bottom, var(--color-primary-dark), var(--color-primary-dark));
     }
 
-    .animate-grid-flow {
-        animation: grid-flow 20s linear infinite;
-    }
-
-    /* Radial gradient background */
-    .bg-radial-gradient {
-        background: radial-gradient(
-            circle at center,
-            transparent 0%,
-            rgba(0, 21, 30, 0.8) 100%
-        );
-    }
-
-    /* Enhance the existing animations */
-    .animate-fadeIn {
-        animation: fadeIn 1s ease-out forwards;
-    }
-
-    .animation-delay-200 {
-        animation-delay: 200ms;
-    }
-
-    .animation-delay-400 {
-        animation-delay: 400ms;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* CSS variables for RGB values */
+    :root {
+        --color-primary-rgb: 32, 140, 186;
+        --color-secondary-rgb: 34, 211, 238;
     }
 </style>

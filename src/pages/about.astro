@@ -2,21 +2,21 @@
 import Layout from "../layouts/Layout.astro";
 
 const seoData = {
-    title: "About Mohamed Rifkan - Founder & Lead Developer at Debugro | Software Development Expert",
-    description: "Meet Mohamed Rifkan, Founder and Lead Developer of Debugro. 5+ years of experience in full-stack development, cloud architecture, and innovative software solutions in Sri Lanka.",
-    keywords: "Mohamed Rifkan, Debugro founder, software developer Sri Lanka, full stack developer, lead developer, cloud architecture expert, React developer, Node.js developer, mobile app developer, DevOps engineer",
+    title: "About Debugro - Professional Software Development Company | Founded by Mohamed Rifkan",
+    description: "Learn about Debugro, a leading software development company founded by Mohamed Rifkan. Our expert team delivers innovative web development, mobile apps, and cloud solutions with 5+ years of industry experience.",
+    keywords: "Debugro about, software development company, Mohamed Rifkan founder, debugro team, web development agency, mobile app development, cloud solutions, founder of debugro, software engineering company, professional development team",
     canonicalUrl: "https://debugro.com/about",
-    image: "https://avatars.githubusercontent.com/u/59793466?v=4",
-    author: "Mohamed Rifkan",
-    type: "profile"
+    image: "https://debugro.com/rifkan-200.jpeg",
+    author: "Debugro Team",
+    type: "organization"
 };
 
 const team = [
     {
         name: "Mohamed Rifkan",
-        role: "Founder & Lead Developer",
-        image: "https://avatars.githubusercontent.com/u/59793466?v=4",
-        bio: "Full-stack developer with 5+ years of experience in building scalable applications. Expertise in React, Node.js, and cloud architecture.",
+        role: "Founder & Lead Engineer",
+        image: "/rifkan-200.jpeg",
+        bio: "Passionate software engineer with 5+ years of experience in building scalable web applications and cloud solutions. Founded Debugro to deliver innovative software solutions that drive business growth.",
         skills: ["Full Stack Development", "Cloud Architecture", "Web Development", "Mobile Development", "DevOps"],
         social: {
             linkedin: "https://www.linkedin.com/in/mohamed-rifkan-b38218214/",
@@ -125,21 +125,20 @@ const values = [
 
     <main class="bg-gradient-to-b from-[var(--color-primary-dark)] to-[#00151e]">
         <!-- Hero Section -->
-        <section class="relative py-20 overflow-hidden" itemscope itemtype="https://schema.org/Person">
+        <section class="relative py-20 overflow-hidden" itemscope itemtype="https://schema.org/Organization">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" itemprop="name">
-                        <span itemprop="givenName">Mohamed</span> <span itemprop="familyName">Rifkan</span> - 
-                        <span class="text-[var(--color-primary)]">Founder of Debugro</span>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                        About <span class="text-[var(--color-primary)]" itemprop="name">Debugro</span>
                     </h1>
                     <p class="text-xl text-gray-300 mb-8" itemprop="description">
-                        <span itemprop="jobTitle">Founder & Lead Developer</span> at <span itemprop="worksFor" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">Debugro</span></span>. 
-                        Passionate full-stack developer with 5+ years of experience creating innovative
-                        software solutions that drive business growth across Sri Lanka and globally.
+                        A professional software development company founded by <span itemprop="founder" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Mohamed Rifkan</span></span>. 
+                        We specialize in creating innovative software solutions that drive business growth, 
+                        serving clients across Sri Lanka and globally with our expert development team.
                     </p>
-                    <meta itemprop="image" content="https://avatars.githubusercontent.com/u/59793466?v=4" />
-                    <meta itemprop="url" content="https://debugro.com/about" />
-                    <meta itemprop="nationality" content="Sri Lankan" />
+                    <meta itemprop="url" content="https://debugro.com" />
+                    <meta itemprop="foundingDate" content="2023" />
+                    <meta itemprop="address" content="Sri Lanka" />
                 </div>
             </div>
             <!-- Background Elements -->
@@ -151,16 +150,16 @@ const values = [
         <section class="py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold text-white mb-8">My Story</h2>
+                    <h2 class="text-3xl font-bold text-white mb-8">Our Story</h2>
                     <div class="space-y-6 text-lg text-gray-300">
                         <p>
-                            Founded in 2023, Debugro emerged from my passion to revolutionize
-                            software development in Sri Lanka. My journey began with a simple
+                            Founded in 2023, Debugro emerged from our founder's passion to revolutionize
+                            software development in Sri Lanka. Our company began with a simple
                             belief: that exceptional software should be accessible to businesses
                             of all sizes.
                         </p>
                         <p>
-                            Today, I'm proud to be at the forefront of technological
+                            Today, our team is proud to be at the forefront of technological
                             innovation, helping businesses across the globe achieve their digital
                             transformation goals through personalized, high-quality solutions.
                         </p>
@@ -174,7 +173,7 @@ const values = [
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-12">
                     <div class="bg-[var(--color-primary-dark)]/80 p-8 rounded-2xl border border-[var(--color-primary-light-dark)]/30">
-                        <h3 class="text-2xl font-bold text-white mb-4">My Mission</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4">Our Mission</h3>
                         <p class="text-gray-300">
                             To empower businesses with innovative software solutions that drive
                             growth, efficiency, and digital transformation while maintaining the
@@ -182,9 +181,9 @@ const values = [
                         </p>
                     </div>
                     <div class="bg-[var(--color-primary-dark)]/80 p-8 rounded-2xl border border-[var(--color-primary-light-dark)]/30">
-                        <h3 class="text-2xl font-bold text-white mb-4">My Vision</h3>
+                        <h3 class="text-2xl font-bold text-white mb-4">Our Vision</h3>
                         <p class="text-gray-300">
-                            To become a leading software development partner in Sri Lanka,
+                            To become a leading software development company in Sri Lanka,
                             recognized globally for innovative solutions, technical
                             excellence, and commitment to client success.
                         </p>
@@ -196,7 +195,7 @@ const values = [
         <!-- Values Section -->
         <section class="py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">My Values</h2>
+                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Values</h2>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {values.map(value => (
                         <div class="bg-[var(--color-primary-dark)]/80 p-6 rounded-xl border border-[var(--color-primary-light-dark)]/30 text-center">
@@ -212,7 +211,7 @@ const values = [
         <!-- Team Section -->
         <section class="py-16 bg-[var(--color-primary-dark)]/50">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">Meet the Founder</h2>
+                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Team</h2>
                 <div class="flex justify-center">
                     <div class="max-w-md">
                     {team.map(member => (
@@ -221,7 +220,7 @@ const values = [
                             <div class="aspect-square overflow-hidden">
                                 <img
                                     src={member.image}
-                                    alt={`${member.name} - ${member.role} at Debugro, Software Developer from Sri Lanka`}
+                                    alt={`${member.name} - ${member.role} at Debugro, Software Engineer from Sri Lanka`}
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     itemprop="image"
                                     loading="lazy"
@@ -290,7 +289,7 @@ const values = [
         <!-- Development Approach -->
         <section class="py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">My Approach</h2>
+                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Approach</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="bg-[var(--color-primary-dark)]/80 p-6 rounded-xl border border-[var(--color-primary-light-dark)]/30">
                         <div class="text-[var(--color-primary)] text-2xl font-bold mb-4">01</div>
@@ -323,7 +322,7 @@ const values = [
                     <div class="max-w-3xl mx-auto text-center">
                         <h2 class="text-3xl font-bold text-white mb-6">Ready to Transform Your Ideas into Reality?</h2>
                         <p class="text-gray-300 mb-8">
-                            Let's discuss how I can help you achieve your digital transformation goals.
+                            Let's discuss how our team can help you achieve your digital transformation goals.
                         </p>
                         <a
                             href="/contact"

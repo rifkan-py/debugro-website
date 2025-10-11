@@ -4,6 +4,42 @@ import Services from "../components/Services.astro";
 import Layout from "../layouts/Layout.astro";
 import Card3D from "../components/ui/Card3D.astro";
 import CardItem from "../components/ui/CardItem.astro";
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+interface BlogPost extends CollectionEntry<'blogs'> {
+    data: {
+        title: string;
+        description?: string;
+        pubDate: Date;
+        author: string;
+        authorRole?: string;
+        authorAvatar?: string;
+        image?: string;
+        tags: string[];
+        featured?: boolean;
+        readTime?: string;
+    };
+}
+
+// Get all blog posts and sort by date (newest first)
+const allPosts: BlogPost[] = await getCollection('blogs');
+const sortedPosts: BlogPost[] = allPosts.sort((a: BlogPost, b: BlogPost) => 
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+// Get the 3 most recent posts for homepage
+const recentPosts: BlogPost[] = sortedPosts.slice(0, 3);
+
+// Format date function
+const formatDate = (date: string | Date): string => {
+    const dateObj: Date = typeof date === 'string' ? new Date(date) : date;
+    return dateObj.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+};
 
 // SEO metadata
 const seoData = {
@@ -54,25 +90,141 @@ const seoData = {
 
         <Hero />
         <Services />
+
+        <!-- show highlighted 3 recent blog posts -->
+        <section class="py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                        Latest Insights
+                    </h2>
+                    <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+                        Stay updated with our latest thoughts on technology, development best practices, and industry trends.
+                    </p>
+                </div>
+                
+                {recentPosts.length > 0 ? (
+                    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {recentPosts.map((post: BlogPost) => (
+                            <article class="bg-[var(--color-primary-dark)]/80 backdrop-blur-md rounded-xl overflow-hidden border border-[var(--color-primary-light-dark)]/30 hover:border-[var(--color-primary)]/50 transition-all duration-300 group">
+                                <a href={`/blogs/${post.slug}`} class="block">
+                                    <div class="aspect-video overflow-hidden">
+                                        {post.data.image && (
+                                            <img 
+                                                src={post.data.image} 
+                                                alt={post.data.title}
+                                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                        )}
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <div class="flex gap-2">
+                                                {post.data.tags && post.data.tags.slice(0, 2).map((tag: string, i: number) => (
+                                                    <span class="px-2 py-1 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary-light)] text-xs font-medium">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                            <span class="text-gray-400 text-sm">
+                                                {formatDate(post.data.pubDate)}
+                                            </span>
+                                        </div>
+                                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-primary)] transition-colors">
+                                            {post.data.title}
+                                        </h3>
+                                        {post.data.description && (
+                                            <p class="text-gray-300 mb-4 line-clamp-2">
+                                                {post.data.description}
+                                            </p>
+                                        )}
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-3">
+                                                {post.data.authorAvatar && (
+                                                    <img 
+                                                        src={post.data.authorAvatar} 
+                                                        alt={post.data.author}
+                                                        class="w-8 h-8 rounded-full"
+                                                    />
+                                                )}
+                                                {post.data.author && (
+                                                    <span class="text-gray-300 text-sm">
+                                                        {post.data.author}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            {post.data.readTime && (
+                                                <span class="text-gray-400 text-sm">
+                                                    {post.data.readTime}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </a>
+                            </article>
+                        ))}
+                    </div>
+                ) : (
+                    <div class="text-center py-16">
+                        <p class="text-gray-400 text-lg">No blog posts available.</p>
+                    </div>
+                )}
+                
+                <div class="text-center mt-12">
+                    <a 
+                        href="/blogs" 
+                        class="inline-flex items-center px-6 py-3 bg-[var(--color-primary)] text-white font-medium rounded-lg hover:bg-[var(--color-primary-light)] transition-all duration-300 group"
+                    >
+                        <span>View All Posts</span>
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- 3D Card Section for Innovative Solutions -->
         <div class="relative">
-            <Card3D 
+            <Card3D
                 class="relative max-w-4xl mx-auto p-8 md:p-12 lg:p-16 bg-[var(--color-primary-dark)]/50 backdrop-blur-lg rounded-3xl shadow-lg border-2"
                 glowIntensity="medium"
             >
-                <CardItem as="h2" translateZ={40} class="text-3xl font-bold text-white mb-4">
+                <CardItem
+                    as="h2"
+                    translateZ={40}
+                    class="text-3xl font-bold text-white mb-4"
+                >
                     Innovative Solutions
                 </CardItem>
-                <CardItem as="p" translateZ={25} class="text-[var(--color-text-muted)] mb-6">
-                    We craft custom software solutions that drive business growth and efficiency. Our team leverages the latest technologies to deliver scalable, secure, and user-friendly applications tailored to your unique needs.
+                <CardItem
+                    as="p"
+                    translateZ={25}
+                    class="text-[var(--color-text-muted)] mb-6"
+                >
+                    We craft custom software solutions that drive business
+                    growth and efficiency. Our team leverages the latest
+                    technologies to deliver scalable, secure, and user-friendly
+                    applications tailored to your unique needs.
                 </CardItem>
-                <CardItem as="a" translateZ={60} 
+                <CardItem
+                    as="a"
+                    translateZ={60}
                     href="/contact"
                     class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 group"
                 >
                     <span>Get in Touch</span>
-                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    <svg
+                        class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
                 </CardItem>
             </Card3D>
@@ -81,7 +233,6 @@ const seoData = {
 </Layout>
 
 <style>
-    
     /* Background animations from main page */
     .bg-radial-gradient {
         background: radial-gradient(
@@ -92,68 +243,135 @@ const seoData = {
     }
 
     @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(180deg); }
+        0%,
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20px) rotate(180deg);
+        }
     }
 
     @keyframes float-delayed {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-15px) rotate(-180deg); }
+        0%,
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-15px) rotate(-180deg);
+        }
     }
 
     @keyframes float-slow {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-10px) rotate(90deg); }
+        0%,
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-10px) rotate(90deg);
+        }
     }
 
     @keyframes float-geometric {
-        0%, 100% { transform: translateY(0px) rotate(45deg); }
-        50% { transform: translateY(-15px) rotate(225deg); }
+        0%,
+        100% {
+            transform: translateY(0px) rotate(45deg);
+        }
+        50% {
+            transform: translateY(-15px) rotate(225deg);
+        }
     }
 
     @keyframes float-geometric-delayed {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(180deg); }
+        0%,
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20px) rotate(180deg);
+        }
     }
 
     @keyframes float-geometric-slow {
-        0%, 100% { transform: translateY(0px) scale(1); }
-        50% { transform: translateY(-10px) scale(1.2); }
+        0%,
+        100% {
+            transform: translateY(0px) scale(1);
+        }
+        50% {
+            transform: translateY(-10px) scale(1.2);
+        }
     }
 
     @keyframes grid-flow {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(-4rem, -4rem); }
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(-4rem, -4rem);
+        }
     }
 
     @keyframes fade-in-up {
-        from { 
-            opacity: 0; 
-            transform: translateY(30px); 
+        from {
+            opacity: 0;
+            transform: translateY(30px);
         }
-        to { 
-            opacity: 1; 
-            transform: translateY(0); 
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 
     /* Animation classes */
-    .animate-float { animation: float 20s ease-in-out infinite; }
-    .animate-float-delayed { animation: float-delayed 25s ease-in-out infinite; animation-delay: -5s; }
-    .animate-float-slow { animation: float-slow 30s ease-in-out infinite; animation-delay: -10s; }
-    .animate-float-geometric { animation: float-geometric 8s ease-in-out infinite; }
-    .animate-float-geometric-delayed { animation: float-geometric-delayed 10s ease-in-out infinite; animation-delay: -3s; }
-    .animate-float-geometric-slow { animation: float-geometric-slow 12s ease-in-out infinite; animation-delay: -6s; }
-    .animate-grid-flow { animation: grid-flow 40s linear infinite; }
-    .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; opacity: 0; }
+    .animate-float {
+        animation: float 20s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+        animation: float-delayed 25s ease-in-out infinite;
+        animation-delay: -5s;
+    }
+    .animate-float-slow {
+        animation: float-slow 30s ease-in-out infinite;
+        animation-delay: -10s;
+    }
+    .animate-float-geometric {
+        animation: float-geometric 8s ease-in-out infinite;
+    }
+    .animate-float-geometric-delayed {
+        animation: float-geometric-delayed 10s ease-in-out infinite;
+        animation-delay: -3s;
+    }
+    .animate-float-geometric-slow {
+        animation: float-geometric-slow 12s ease-in-out infinite;
+        animation-delay: -6s;
+    }
+    .animate-grid-flow {
+        animation: grid-flow 40s linear infinite;
+    }
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+        opacity: 0;
+    }
 
     /* Animation delays */
-    .animation-delay-100 { animation-delay: 100ms; }
-    .animation-delay-200 { animation-delay: 200ms; }
-    .animation-delay-300 { animation-delay: 300ms; }
-    .animation-delay-400 { animation-delay: 400ms; }
-    .animation-delay-500 { animation-delay: 500ms; }
-    .animation-delay-600 { animation-delay: 600ms; }
+    .animation-delay-100 {
+        animation-delay: 100ms;
+    }
+    .animation-delay-200 {
+        animation-delay: 200ms;
+    }
+    .animation-delay-300 {
+        animation-delay: 300ms;
+    }
+    .animation-delay-400 {
+        animation-delay: 400ms;
+    }
+    .animation-delay-500 {
+        animation-delay: 500ms;
+    }
+    .animation-delay-600 {
+        animation-delay: 600ms;
+    }
 
     /* CSS variables */
     :root {
@@ -188,82 +406,125 @@ const seoData = {
         }
     }
 
-     /* 3D Card Styles */
-            .card-container {
-                padding: 5rem 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+    /* 3D Card Styles */
+    .card-container {
+        padding: 5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-            .card-body {
-                height: auto;
-                width: auto;
-                transform-style: preserve-3d;
-            }
+    .card-body {
+        height: auto;
+        width: auto;
+        transform-style: preserve-3d;
+    }
 
-            .card-body > * {
-                transform-style: preserve-3d;
-            }
+    .card-body > * {
+        transform-style: preserve-3d;
+    }
 
-            /* Rotating Border Animation */
-            @keyframes border-gradient {
-                0% {
-                    border-image: linear-gradient(0deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
-                }
-                25% {
-                    border-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
-                }
-                50% {
-                    border-image: linear-gradient(180deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
-                }
-                75% {
-                    border-image: linear-gradient(270deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
-                }
-                100% {
-                    border-image: linear-gradient(360deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
-                }
-            }
-            
-            .border-gradient-animated {
-                border-image: linear-gradient(0deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
-                animation: border-gradient 3s linear infinite;
-                position: relative;
-            }
+    /* Rotating Border Animation */
+    @keyframes border-gradient {
+        0% {
+            border-image: linear-gradient(
+                    0deg,
+                    var(--color-primary),
+                    var(--color-secondary),
+                    var(--color-primary)
+                )
+                1;
+        }
+        25% {
+            border-image: linear-gradient(
+                    90deg,
+                    var(--color-primary),
+                    var(--color-secondary),
+                    var(--color-primary)
+                )
+                1;
+        }
+        50% {
+            border-image: linear-gradient(
+                    180deg,
+                    var(--color-primary),
+                    var(--color-secondary),
+                    var(--color-primary)
+                )
+                1;
+        }
+        75% {
+            border-image: linear-gradient(
+                    270deg,
+                    var(--color-primary),
+                    var(--color-secondary),
+                    var(--color-primary)
+                )
+                1;
+        }
+        100% {
+            border-image: linear-gradient(
+                    360deg,
+                    var(--color-primary),
+                    var(--color-secondary),
+                    var(--color-primary)
+                )
+                1;
+        }
+    }
 
-            /* Enhanced 3D hover effects */
-            .card-body:hover {
-                box-shadow: 
-                    0 20px 40px rgba(var(--color-primary-rgb), 0.1),
-                    0 0 0 1px rgba(var(--color-primary-rgb), 0.2);
-            }
+    .border-gradient-animated {
+        border-image: linear-gradient(
+                0deg,
+                var(--color-primary),
+                var(--color-secondary),
+                var(--color-primary)
+            )
+            1;
+        animation: border-gradient 3s linear infinite;
+        position: relative;
+    }
 
-            /* Add glow effect on card hover */
-            .card-body:hover::before {
-                content: '';
-                position: absolute;
-                inset: -2px;
-                border-radius: inherit;
-                background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
-                z-index: -1;
-                opacity: 0.3;
-                filter: blur(10px);
-                transition: opacity 0.3s ease;
-            }
+    /* Enhanced 3D hover effects */
+    .card-body:hover {
+        box-shadow:
+            0 20px 40px rgba(var(--color-primary-rgb), 0.1),
+            0 0 0 1px rgba(var(--color-primary-rgb), 0.2);
+    }
+
+    /* Add glow effect on card hover */
+    .card-body:hover::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: linear-gradient(
+            45deg,
+            var(--color-primary),
+            var(--color-secondary),
+            var(--color-primary)
+        );
+        z-index: -1;
+        opacity: 0.3;
+        filter: blur(10px);
+        transition: opacity 0.3s ease;
+    }
 </style>
-
 
 <script>
     // 3D Card Effect for About Page
-    document.addEventListener('DOMContentLoaded', () => {
-        const cardElement = document.querySelector('[data-3d-card]') as HTMLElement;
-        
+    document.addEventListener("DOMContentLoaded", () => {
+        const cardElement = document.querySelector(
+            "[data-3d-card]",
+        ) as HTMLElement;
+
         if (cardElement) {
             let isMouseEntered = false;
 
             const handleMouseMove = (e: MouseEvent) => {
                 if (!cardElement) return;
-                const { left, top, width, height } = cardElement.getBoundingClientRect();
+                const { left, top, width, height } =
+                    cardElement.getBoundingClientRect();
                 const x = (e.clientX - left - width / 2) / 25;
                 const y = (e.clientY - top - height / 2) / 25;
                 cardElement.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
@@ -272,12 +533,13 @@ const seoData = {
             const handleMouseEnter = () => {
                 isMouseEntered = true;
                 // Animate child elements
-                const cardItems = cardElement.querySelectorAll('[data-card-item]');
+                const cardItems =
+                    cardElement.querySelectorAll("[data-card-item]");
                 cardItems.forEach((item) => {
                     const element = item as HTMLElement;
-                    const translateZ = element.dataset.translateZ || '0';
-                    const translateX = element.dataset.translateX || '0';
-                    const translateY = element.dataset.translateY || '0';
+                    const translateZ = element.dataset.translateZ || "0";
+                    const translateX = element.dataset.translateX || "0";
+                    const translateY = element.dataset.translateY || "0";
                     element.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;
                 });
             };
@@ -285,18 +547,19 @@ const seoData = {
             const handleMouseLeave = () => {
                 isMouseEntered = false;
                 cardElement.style.transform = `rotateY(0deg) rotateX(0deg)`;
-                
+
                 // Reset child elements
-                const cardItems = cardElement.querySelectorAll('[data-card-item]');
+                const cardItems =
+                    cardElement.querySelectorAll("[data-card-item]");
                 cardItems.forEach((item) => {
                     const element = item as HTMLElement;
                     element.style.transform = `translateX(0px) translateY(0px) translateZ(0px)`;
                 });
             };
 
-            cardElement.addEventListener('mousemove', handleMouseMove);
-            cardElement.addEventListener('mouseenter', handleMouseEnter);
-            cardElement.addEventListener('mouseleave', handleMouseLeave);
+            cardElement.addEventListener("mousemove", handleMouseMove);
+            cardElement.addEventListener("mouseenter", handleMouseEnter);
+            cardElement.addEventListener("mouseleave", handleMouseLeave);
         }
     });
 </script>

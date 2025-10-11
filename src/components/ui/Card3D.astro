@@ -1,0 +1,180 @@
+---
+export interface Props {
+    class?: string;
+    containerClass?: string;
+    borderAnimation?: boolean;
+    glowIntensity?: 'light' | 'medium' | 'strong';
+}
+
+const { 
+    class: className = '', 
+    containerClass = '',
+    borderAnimation = true,
+    glowIntensity = 'medium'
+} = Astro.props;
+
+// Generate unique ID for this card instance
+const cardId = `card-3d-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`card-container ${containerClass}`} style="perspective: 1000px;">
+    <div 
+        class={`card-body transition-all duration-200 ease-linear ${borderAnimation ? 'border-gradient-animated' : ''} ${className}`}
+        style="transform-style: preserve-3d;"
+        data-3d-card={cardId}
+    >
+        <slot />
+    </div>
+</div>
+
+<script define:vars={{ cardId, glowIntensity }}>
+    // 3D Card Effect - Scoped to specific card instance
+    document.addEventListener('DOMContentLoaded', () => {
+        const cardElement = document.querySelector(`[data-3d-card="${cardId}"]`);
+        
+        if (cardElement) {
+            let isMouseEntered = false;
+
+            const handleMouseMove = (e) => {
+                if (!cardElement) return;
+                const { left, top, width, height } = cardElement.getBoundingClientRect();
+                const x = (e.clientX - left - width / 2) / 25;
+                const y = (e.clientY - top - height / 2) / 25;
+                cardElement.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            };
+
+            const handleMouseEnter = () => {
+                isMouseEntered = true;
+                // Add glow effect class based on intensity
+                cardElement.classList.add(`glow-${glowIntensity}`);
+                
+                // Animate child elements
+                const cardItems = cardElement.querySelectorAll('[data-card-item]');
+                cardItems.forEach((item) => {
+                    const element = item;
+                    const translateZ = element.dataset.translateZ || '0';
+                    const translateX = element.dataset.translateX || '0';
+                    const translateY = element.dataset.translateY || '0';
+                    element.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;
+                });
+            };
+
+            const handleMouseLeave = () => {
+                isMouseEntered = false;
+                cardElement.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                cardElement.classList.remove(`glow-${glowIntensity}`);
+                
+                // Reset child elements
+                const cardItems = cardElement.querySelectorAll('[data-card-item]');
+                cardItems.forEach((item) => {
+                    const element = item;
+                    element.style.transform = `translateX(0px) translateY(0px) translateZ(0px)`;
+                });
+            };
+
+            cardElement.addEventListener('mousemove', handleMouseMove);
+            cardElement.addEventListener('mouseenter', handleMouseEnter);
+            cardElement.addEventListener('mouseleave', handleMouseLeave);
+        }
+    });
+</script>
+
+<style>
+    /* 3D Card Base Styles */
+    .card-container {
+        padding: 3rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-body {
+        height: auto;
+        width: auto;
+        transform-style: preserve-3d;
+        position: relative;
+    }
+
+    .card-body > :global(*) {
+        transform-style: preserve-3d;
+    }
+
+    /* Card Items */
+    :global([data-card-item]) {
+        transition: transform 200ms ease-linear;
+    }
+
+    /* Rotating Border Animation */
+    @keyframes border-gradient {
+        0% {
+            border-image: linear-gradient(0deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+        }
+        25% {
+            border-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+        }
+        50% {
+            border-image: linear-gradient(180deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+        }
+        75% {
+            border-image: linear-gradient(270deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+        }
+        100% {
+            border-image: linear-gradient(360deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+        }
+    }
+    
+    .border-gradient-animated {
+        border-image: linear-gradient(0deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+        animation: border-gradient 3s linear infinite;
+    }
+
+    /* Glow Effects */
+    .card-body.glow-light::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+        z-index: -1;
+        opacity: 0.1;
+        filter: blur(6px);
+        transition: opacity 0.3s ease;
+    }
+
+    .card-body.glow-medium::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+        z-index: -1;
+        opacity: 0.2;
+        filter: blur(8px);
+        transition: opacity 0.3s ease;
+    }
+
+    .card-body.glow-strong::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+        z-index: -1;
+        opacity: 0.3;
+        filter: blur(10px);
+        transition: opacity 0.3s ease;
+    }
+
+    /* Enhanced shadow effects */
+    .card-body.glow-light {
+        box-shadow: 0 10px 25px rgba(var(--color-primary-rgb), 0.1);
+    }
+
+    .card-body.glow-medium {
+        box-shadow: 0 15px 35px rgba(var(--color-primary-rgb), 0.15);
+    }
+
+    .card-body.glow-strong {
+        box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.2);
+    }
+</style>

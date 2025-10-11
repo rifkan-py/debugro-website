@@ -2,6 +2,8 @@
 import Hero from "../components/Hero.astro";
 import Services from "../components/Services.astro";
 import Layout from "../layouts/Layout.astro";
+import Card3D from "../components/ui/Card3D.astro";
+import CardItem from "../components/ui/CardItem.astro";
 
 // SEO metadata
 const seoData = {
@@ -52,10 +54,34 @@ const seoData = {
 
         <Hero />
         <Services />
+        <!-- 3D Card Section for Innovative Solutions -->
+        <div class="relative">
+            <Card3D 
+                class="relative max-w-4xl mx-auto p-8 md:p-12 lg:p-16 bg-[var(--color-primary-dark)]/50 backdrop-blur-lg rounded-3xl shadow-lg border-2"
+                glowIntensity="medium"
+            >
+                <CardItem as="h2" translateZ={40} class="text-3xl font-bold text-white mb-4">
+                    Innovative Solutions
+                </CardItem>
+                <CardItem as="p" translateZ={25} class="text-[var(--color-text-muted)] mb-6">
+                    We craft custom software solutions that drive business growth and efficiency. Our team leverages the latest technologies to deliver scalable, secure, and user-friendly applications tailored to your unique needs.
+                </CardItem>
+                <CardItem as="a" translateZ={60} 
+                    href="/contact"
+                    class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 group"
+                >
+                    <span>Get in Touch</span>
+                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </CardItem>
+            </Card3D>
+        </div>
     </main>
 </Layout>
 
 <style>
+    
     /* Background animations from main page */
     .bg-radial-gradient {
         background: radial-gradient(
@@ -161,4 +187,116 @@ const seoData = {
             transition-duration: 0.01ms !important;
         }
     }
+
+     /* 3D Card Styles */
+            .card-container {
+                padding: 5rem 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .card-body {
+                height: auto;
+                width: auto;
+                transform-style: preserve-3d;
+            }
+
+            .card-body > * {
+                transform-style: preserve-3d;
+            }
+
+            /* Rotating Border Animation */
+            @keyframes border-gradient {
+                0% {
+                    border-image: linear-gradient(0deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+                25% {
+                    border-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+                50% {
+                    border-image: linear-gradient(180deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+                75% {
+                    border-image: linear-gradient(270deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+                100% {
+                    border-image: linear-gradient(360deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+            }
+            
+            .border-gradient-animated {
+                border-image: linear-gradient(0deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                animation: border-gradient 3s linear infinite;
+                position: relative;
+            }
+
+            /* Enhanced 3D hover effects */
+            .card-body:hover {
+                box-shadow: 
+                    0 20px 40px rgba(var(--color-primary-rgb), 0.1),
+                    0 0 0 1px rgba(var(--color-primary-rgb), 0.2);
+            }
+
+            /* Add glow effect on card hover */
+            .card-body:hover::before {
+                content: '';
+                position: absolute;
+                inset: -2px;
+                border-radius: inherit;
+                background: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-primary));
+                z-index: -1;
+                opacity: 0.3;
+                filter: blur(10px);
+                transition: opacity 0.3s ease;
+            }
 </style>
+
+
+<script>
+    // 3D Card Effect for About Page
+    document.addEventListener('DOMContentLoaded', () => {
+        const cardElement = document.querySelector('[data-3d-card]') as HTMLElement;
+        
+        if (cardElement) {
+            let isMouseEntered = false;
+
+            const handleMouseMove = (e: MouseEvent) => {
+                if (!cardElement) return;
+                const { left, top, width, height } = cardElement.getBoundingClientRect();
+                const x = (e.clientX - left - width / 2) / 25;
+                const y = (e.clientY - top - height / 2) / 25;
+                cardElement.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            };
+
+            const handleMouseEnter = () => {
+                isMouseEntered = true;
+                // Animate child elements
+                const cardItems = cardElement.querySelectorAll('[data-card-item]');
+                cardItems.forEach((item) => {
+                    const element = item as HTMLElement;
+                    const translateZ = element.dataset.translateZ || '0';
+                    const translateX = element.dataset.translateX || '0';
+                    const translateY = element.dataset.translateY || '0';
+                    element.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;
+                });
+            };
+
+            const handleMouseLeave = () => {
+                isMouseEntered = false;
+                cardElement.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                
+                // Reset child elements
+                const cardItems = cardElement.querySelectorAll('[data-card-item]');
+                cardItems.forEach((item) => {
+                    const element = item as HTMLElement;
+                    element.style.transform = `translateX(0px) translateY(0px) translateZ(0px)`;
+                });
+            };
+
+            cardElement.addEventListener('mousemove', handleMouseMove);
+            cardElement.addEventListener('mouseenter', handleMouseEnter);
+            cardElement.addEventListener('mouseleave', handleMouseLeave);
+        }
+    });
+</script>

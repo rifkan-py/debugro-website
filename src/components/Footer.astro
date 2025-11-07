@@ -207,22 +207,32 @@
                 <h4 class="text-[var(--color-primary-light)] text-lg mb-4">
                     Subscribe to Our Newsletter
                 </h4>
-                <form class="space-y-4">
+                <form id="newsletter-form" class="space-y-4">
                     <label for="email-input" class="sr-only"
                         >Email address</label
                     >
                     <input
                         type="email"
                         id="email-input"
+                        name="email"
                         class="w-full px-4 py-3 sm:py-2 text-base sm:text-sm border border-[var(--color-primary)] rounded-lg bg-[var(--color-primary-dark)] text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary-light)] focus:ring-1 focus:ring-[var(--color-primary-light)] transition-colors duration-200"
                         placeholder="Enter your email"
                         required
                     />
                     <button
                         type="submit"
-                        class="w-full px-4 py-3 sm:py-2 text-base sm:text-sm font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-light-dark)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-light)] focus:ring-offset-2 focus:ring-offset-[var(--color-primary-dark)]"
-                        >Subscribe</button
-                    >
+                        id="subscribe-btn"
+                        class="w-full px-4 py-3 sm:py-2 text-base sm:text-sm font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-light-dark)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-light)] focus:ring-offset-2 focus:ring-offset-[var(--color-primary-dark)] disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                        <span id="btn-text">Subscribe</span>
+                        <span id="btn-loading" class="hidden">
+                            <svg class="inline w-4 h-4 mr-2 animate-spin" viewBox="0 0 24 24" fill="none">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Sending...
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -247,6 +257,320 @@
     </div>
 </footer>
 
+<!-- Email Verification Modal -->
+<div id="verification-modal" class="fixed inset-0 z-50 items-center justify-center p-4 bg-black/50 backdrop-blur-sm hidden">
+    <div class="w-full max-w-md bg-[var(--color-primary-dark)] rounded-2xl p-6 transform transition-all duration-300 border border-[var(--color-primary-light-dark)]/30 shadow-xl">
+        <div class="text-center mb-6">
+            <div class="mx-auto w-16 h-16 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-8 h-8 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Verify Your Email</h3>
+            <p class="text-gray-300 text-sm">
+                We've sent a verification code to <br>
+                <span id="verification-email" class="text-[var(--color-primary)] font-medium"></span>
+            </p>
+        </div>
+
+        <form id="verification-form" class="space-y-4">
+            <div>
+                <label for="verification-code" class="block text-sm font-medium text-gray-300 mb-2">
+                    Enter 6-digit verification code
+                </label>
+                <input
+                    type="text"
+                    id="verification-code"
+                    name="verificationCode"
+                    maxlength="6"
+                    pattern="[0-9]{6}"
+                    class="w-full px-4 py-3 text-center text-lg font-mono bg-[var(--color-primary-dark)]/50 border border-[var(--color-primary-light-dark)]/30 rounded-lg text-white placeholder-gray-400 focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/50 focus:outline-none transition-all duration-200"
+                    placeholder="000000"
+                    required
+                />
+            </div>
+
+            <div class="flex gap-3">
+                <button
+                    type="button"
+                    id="cancel-verification"
+                    class="flex-1 px-4 py-3 text-sm font-medium text-gray-300 border border-gray-600 rounded-lg hover:bg-gray-700 hover:text-white transition-all duration-200"
+                >
+                    Cancel
+                </button>
+                <button
+                    type="submit"
+                    id="verify-btn"
+                    class="flex-1 px-4 py-3 text-sm font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-light)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <span id="verify-btn-text">Verify</span>
+                    <span id="verify-btn-loading" class="hidden">
+                        <svg class="inline w-4 h-4 mr-2 animate-spin" viewBox="0 0 24 24" fill="none">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Verifying...
+                    </span>
+                </button>
+            </div>
+
+            <div class="text-center">
+                <button
+                    type="button"
+                    id="resend-code"
+                    class="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-light)] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    Didn't receive the code? Resend
+                </button>
+            </div>
+        </form>
+
+        <!-- Success State -->
+        <div id="verification-success" class="hidden text-center">
+            <div class="mx-auto w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Email Verified!</h3>
+            <p class="text-gray-300 text-sm mb-4">
+                You've successfully subscribed to our newsletter. You'll receive updates about our latest insights and offerings.
+            </p>
+            <button
+                type="button"
+                id="close-modal"
+                class="px-6 py-2 text-sm font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-light)] transition-all duration-200"
+            >
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Email verification functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const newsletterForm = document.getElementById('newsletter-form');
+        const verificationModal = document.getElementById('verification-modal');
+        const verificationForm = document.getElementById('verification-form');
+        const verificationSuccess = document.getElementById('verification-success');
+        const emailInput = document.getElementById('email-input');
+        const verificationEmailSpan = document.getElementById('verification-email');
+        const verificationCodeInput = document.getElementById('verification-code');
+        const subscribeBtn = document.getElementById('subscribe-btn');
+        const verifyBtn = document.getElementById('verify-btn');
+        const cancelBtn = document.getElementById('cancel-verification');
+        const resendBtn = document.getElementById('resend-code');
+        const closeModalBtn = document.getElementById('close-modal');
+
+        let userEmail = '';
+        let resendTimer = 0;
+        let resendInterval;
+
+        // Newsletter form submission
+        newsletterForm?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = (emailInput as HTMLInputElement)?.value.trim();
+            if (!email) return;
+
+            userEmail = email;
+            
+            // Show loading state
+            toggleButtonLoading(subscribeBtn, true, 'Sending...');
+            
+            try {
+                // Simulate API call to send verification code
+                await sendVerificationCode(email);
+                
+                // Show verification modal
+                showVerificationModal(email);
+                
+                // Reset newsletter form loading state
+                toggleButtonLoading(subscribeBtn, false, 'Subscribe');
+                
+            } catch (error) {
+                console.error('Error sending verification code:', error);
+                // Show error message (you can implement toast notifications here)
+                alert('Failed to send verification code. Please try again.');
+                toggleButtonLoading(subscribeBtn, false, 'Subscribe');
+            }
+        });
+
+        // Verification form submission
+        verificationForm?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const code = (verificationCodeInput as HTMLInputElement)?.value.trim();
+            if (!code || code.length !== 6) {
+                alert('Please enter a valid 6-digit verification code.');
+                return;
+            }
+            
+            // Show loading state
+            toggleButtonLoading(verifyBtn, true, 'Verifying...');
+            
+            try {
+                // Simulate API call to verify code
+                const isValid = await verifyCode(userEmail, code);
+                
+                if (isValid) {
+                    // Show success state
+                    verificationForm.classList.add('hidden');
+                    verificationSuccess?.classList.remove('hidden');
+                } else {
+                    alert('Invalid verification code. Please try again.');
+                }
+                
+                toggleButtonLoading(verifyBtn, false, 'Verify');
+                
+            } catch (error) {
+                console.error('Error verifying code:', error);
+                alert('Failed to verify code. Please try again.');
+                toggleButtonLoading(verifyBtn, false, 'Verify');
+            }
+        });
+
+        // Cancel verification
+        cancelBtn?.addEventListener('click', function() {
+            closeVerificationModal();
+        });
+
+        // Close modal after success
+        closeModalBtn?.addEventListener('click', function() {
+            closeVerificationModal();
+            // Reset newsletter form
+            (newsletterForm as HTMLFormElement)?.reset();
+        });
+
+        // Resend code
+        resendBtn?.addEventListener('click', async function() {
+            if (resendTimer > 0) return;
+            
+            try {
+                await sendVerificationCode(userEmail);
+                startResendTimer();
+            } catch (error) {
+                console.error('Error resending code:', error);
+                alert('Failed to resend verification code. Please try again.');
+            }
+        });
+
+        // Close modal when clicking outside
+        verificationModal?.addEventListener('click', function(e) {
+            if (e.target === verificationModal) {
+                closeVerificationModal();
+            }
+        });
+
+        // Auto-format verification code input
+        verificationCodeInput?.addEventListener('input', function(e) {
+            const target = e.target as HTMLInputElement;
+            let value = target.value.replace(/\D/g, '');
+            if (value.length > 6) value = value.slice(0, 6);
+            target.value = value;
+        });
+
+        // Functions
+        function showVerificationModal(email) {
+            verificationEmailSpan.textContent = email;
+            verificationModal?.classList.remove('hidden');
+            verificationModal?.classList.add('flex');
+            verificationCodeInput?.focus();
+            startResendTimer();
+        }
+
+        function closeVerificationModal() {
+            verificationModal?.classList.add('hidden');
+            verificationModal?.classList.remove('flex');
+            verificationForm?.classList.remove('hidden');
+            verificationSuccess?.classList.add('hidden');
+            (verificationCodeInput as HTMLInputElement).value = '';
+            clearResendTimer();
+        }
+
+        function toggleButtonLoading(button, isLoading, text) {
+            if (!button) return;
+            
+            const btnText = button.querySelector('#btn-text') || button.querySelector('#verify-btn-text');
+            const btnLoading = button.querySelector('#btn-loading') || button.querySelector('#verify-btn-loading');
+            
+            if (isLoading) {
+                button.disabled = true;
+                btnText?.classList.add('hidden');
+                btnLoading?.classList.remove('hidden');
+            } else {
+                button.disabled = false;
+                btnText?.classList.remove('hidden');
+                btnLoading?.classList.add('hidden');
+                if (btnText) btnText.textContent = text;
+            }
+        }
+
+        function startResendTimer() {
+            resendTimer = 60;
+            (resendBtn as HTMLButtonElement).disabled = true;
+            resendBtn.textContent = `Resend in ${resendTimer}s`;
+            
+            resendInterval = setInterval(() => {
+                resendTimer--;
+                if (resendTimer > 0) {
+                    resendBtn.textContent = `Resend in ${resendTimer}s`;
+                } else {
+                    clearResendTimer();
+                }
+            }, 1000);
+        }
+
+        function clearResendTimer() {
+            if (resendInterval) {
+                clearInterval(resendInterval);
+                resendInterval = null;
+            }
+            resendTimer = 0;
+            (resendBtn as HTMLButtonElement).disabled = false;
+            resendBtn.textContent = "Didn't receive the code? Resend";
+        }
+
+        // Simulate API functions (replace with actual API calls)
+        async function sendVerificationCode(email) {
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Here you would make an actual API call to your backend
+            // Example: 
+            // const response = await fetch('/api/send-verification', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ email })
+            // });
+            // if (!response.ok) throw new Error('Failed to send verification code');
+            
+            console.log('Verification code sent to:', email);
+            return true;
+        }
+
+        async function verifyCode(email, code) {
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Here you would make an actual API call to your backend
+            // Example:
+            // const response = await fetch('/api/verify-email', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ email, code })
+            // });
+            // if (!response.ok) throw new Error('Failed to verify code');
+            // return response.json();
+            
+            // For demo purposes, accept any 6-digit code
+            console.log('Verifying code:', code, 'for email:', email);
+            return code.length === 6;
+        }
+    });
+</script>
+
 <style>
     @keyframes border-flow {
         0% {
@@ -260,5 +584,40 @@
     .animate-border-flow {
         background-size: 200% 100%;
         animation: border-flow 8s linear infinite;
+    }
+
+    /* Modal animations */
+    #verification-modal {
+        transition: all 0.3s ease;
+    }
+
+    #verification-modal.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #verification-modal.flex {
+        opacity: 1;
+        pointer-events: auto;
+        display: flex;
+    }
+
+    /* Verification code input styling */
+    #verification-code {
+        letter-spacing: 0.5em;
+    }
+
+    /* Loading spinner animation */
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-spin {
+        animation: spin 1s linear infinite;
     }
 </style>

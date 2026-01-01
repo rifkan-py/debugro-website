@@ -11,6 +11,7 @@
 
     /* Primary (branding) */
     --color-primary: #208cba;
+    --color-primary-rgb: 32, 140, 186;
     --color-primary-light: #dcf1fa;
     --color-primary-light-dark: #002d40;
     --color-primary-dark: #00151e;

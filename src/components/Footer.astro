@@ -1,3 +1,7 @@
+---
+import { subscribeToNewsletter } from '../lib/firebase';
+---
+
 <footer
     class="bg-[var(--color-primary-dark)] border-t border-[var(--color-primary-light-dark)] text-white py-10 relative bottom-0 w-full overflow-x-hidden before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:animate-border-flow before:bg-gradient-to-r before:from-transparent before:via-[var(--color-primary)] before:to-transparent"
     role="contentinfo"
@@ -5,11 +9,9 @@
     <div class="container mx-auto px-4 sm:px-5">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[3fr_1fr_1fr_2fr] gap-8 lg:gap-12">
             <div class="text-left space-y-4">
-                <div class="text-xl sm:text-lg font-bold">
-                    <span class="text-[var(--color-primary)]">Debug</span><span
-                        >ro.</span
-                    >
-                </div>
+                <a href="/" class="text-xl sm:text-lg font-bold block hover:opacity-80 transition-opacity">
+                    <span class="text-[var(--color-primary)]">Debug</span><span>ro.</span>
+                </a>
                 <p class="text-gray-300 text-sm mt-3 leading-6">
                     Debugro empowers businesses with cutting-edge software
                     solutions designed to deliver performance, security, and
@@ -79,7 +81,7 @@
                 <div class="flex gap-4">
                     <a
                         href="https://linkedin.com/company/debugro"
-                        class="w-8 h-8 sm:w-6 sm:h-6 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-500 hover:text-white transition-colors duration-200"
+                        class="w-8 h-8 sm:w-6 sm:h-6 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-[#0077b5] hover:text-white transition-all duration-300 hover:scale-110"
                         aria-label="Follow us on LinkedIn"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -98,7 +100,7 @@
                     </a>
                     <a
                         href="https://github.com/debugro"
-                        class="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-gray-800 hover:text-white"
+                        class="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-[#333] hover:text-white transition-all duration-300 hover:scale-110"
                         aria-label="View our projects on GitHub"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -117,7 +119,7 @@
                     </a>
                     <a
                         href="https://twitter.com/debugro"
-                        class="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-blue-400 hover:text-white"
+                        class="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-[#1DA1F2] hover:text-white transition-all duration-300 hover:scale-110"
                         aria-label="Follow us on Twitter"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -143,28 +145,28 @@
                 </h4>
                 <nav class="flex flex-col gap-3 sm:gap-2">
                     <a
-                        href="#services"
-                        class="text-gray-300 text-base sm:text-sm hover:text-[var(--color-primary)] transition-colors duration-200"
+                        href="/#services"
+                        class="text-gray-300 text-base sm:text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >Mobile Solutions</a
                     >
                     <a
-                        href="#services"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/#services"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >Web Solutions</a
                     >
                     <a
-                        href="#services"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/#services"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >Desktop Solutions</a
                     >
                     <a
-                        href="#services"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/#services"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >Cloud Solutions</a
                     >
                     <a
-                        href="#services"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/#services"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >24/7 Support</a
                     >
                 </nav>
@@ -176,28 +178,28 @@
                 </h4>
                 <nav class="flex flex-col gap-2">
                     <a
-                        href="#about"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/about"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >About us</a
                     >
                     <a
-                        href="#about"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/about#team"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >Our Team</a
                     >
                     <a
-                        href="#contact"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/contact"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >Contact</a
                     >
                     <a
-                        href="#about"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/about#partners"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >Partners</a
                     >
                     <a
-                        href="#blogs"
-                        class="text-gray-300 text-sm hover:text-[var(--color-primary)]"
+                        href="/blogs"
+                        class="text-gray-300 text-sm hover:text-[var(--color-primary)] hover:translate-x-1 transition-all duration-200"
                         >News and Blogs</a
                     >
                 </nav>
@@ -207,22 +209,25 @@
                 <h4 class="text-[var(--color-primary-light)] text-lg mb-4">
                     Subscribe to Our Newsletter
                 </h4>
-                <form class="space-y-4">
+                <form id="newsletter-form" class="space-y-4">
                     <label for="email-input" class="sr-only"
                         >Email address</label
                     >
                     <input
                         type="email"
                         id="email-input"
+                        name="email"
                         class="w-full px-4 py-3 sm:py-2 text-base sm:text-sm border border-[var(--color-primary)] rounded-lg bg-[var(--color-primary-dark)] text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary-light)] focus:ring-1 focus:ring-[var(--color-primary-light)] transition-colors duration-200"
                         placeholder="Enter your email"
                         required
                     />
                     <button
                         type="submit"
-                        class="w-full px-4 py-3 sm:py-2 text-base sm:text-sm font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-light-dark)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-light)] focus:ring-offset-2 focus:ring-offset-[var(--color-primary-dark)]"
+                        id="newsletter-submit-btn"
+                        class="w-full px-4 py-3 sm:py-2 text-base sm:text-sm font-medium text-white bg-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary-light-dark)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-light)] focus:ring-offset-2 focus:ring-offset-[var(--color-primary-dark)] disabled:opacity-50 disabled:cursor-not-allowed"
                         >Subscribe</button
                     >
+                    <div id="newsletter-message" class="hidden text-sm"></div>
                 </form>
             </div>
         </div>
@@ -233,19 +238,78 @@
                 © 2025 Debugro. All rights reserved.
             </div>
             <nav class="flex flex-wrap justify-center gap-6 sm:gap-4 text-base sm:text-sm text-gray-400">
-                <a href="/privacy-policy" class="hover:underline hover:text-[var(--color-primary)] transition-colors duration-200"
+                <a href="/privacy" class="hover:underline hover:text-[var(--color-primary)] transition-colors duration-200"
                     >Privacy Policy</a
                 >
-                <a href="/terms-of-service" class="hover:underline hover:text-[var(--color-primary)] transition-colors duration-200"
+                <a href="/terms" class="hover:underline hover:text-[var(--color-primary)] transition-colors duration-200"
                     >Terms of Service</a
                 >
-                <a href="/cookie-policy" class="hover:underline hover:text-[var(--color-primary)] transition-colors duration-200"
+                <a href="/cookies" class="hover:underline hover:text-[var(--color-primary)] transition-colors duration-200"
                     >Cookie Policy</a
                 >
             </nav>
         </div>
     </div>
 </footer>
+
+<script>
+  import { subscribeToNewsletter } from '../lib/firebase';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('newsletter-form') as HTMLFormElement;
+    const emailInput = document.getElementById('email-input') as HTMLInputElement;
+    const submitBtn = document.getElementById('newsletter-submit-btn') as HTMLButtonElement;
+    const messageDiv = document.getElementById('newsletter-message') as HTMLDivElement;
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = emailInput.value.trim();
+
+        if (!email) {
+          showMessage('Please enter a valid email address', 'error');
+          return;
+        }
+
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Subscribing...';
+
+        try {
+          const result = await subscribeToNewsletter(email, 'footer');
+
+          if (result.success) {
+            showMessage('Thank you for subscribing! Check your email for confirmation.', 'success');
+            form.reset();
+          } else {
+            showMessage(result.error || 'Failed to subscribe. Please try again.', 'error');
+          }
+        } catch (error) {
+          console.error('Newsletter subscription error:', error);
+          showMessage('An unexpected error occurred. Please try again later.', 'error');
+        } finally {
+          // Re-enable button
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Subscribe';
+        }
+      });
+    }
+
+    function showMessage(message: string, type: 'success' | 'error') {
+      messageDiv.textContent = message;
+      messageDiv.className = `text-sm mt-2 ${
+        type === 'success' ? 'text-green-400' : 'text-red-400'
+      }`;
+      messageDiv.classList.remove('hidden');
+
+      // Hide message after 5 seconds
+      setTimeout(() => {
+        messageDiv.classList.add('hidden');
+      }, 5000);
+    }
+  });
+</script>
 
 <style>
     @keyframes border-flow {

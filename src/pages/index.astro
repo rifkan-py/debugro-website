@@ -3,7 +3,6 @@ import Hero from "../components/Hero.astro";
 import Services from "../components/Services.astro";
 import Layout from "../layouts/Layout.astro";
 import Card3D from "../components/ui/Card3D.astro";
-import CardItem from "../components/ui/CardItem.astro";
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
@@ -184,50 +183,7 @@ const seoData = {
             </div>
         </section>
 
-        <!-- 3D Card Section for Innovative Solutions -->
-        <div class="relative">
-            <Card3D
-                class="relative max-w-4xl mx-auto p-8 md:p-12 lg:p-16 bg-[var(--color-primary-dark)]/50 backdrop-blur-lg rounded-3xl shadow-lg border-2"
-                glowIntensity="medium"
-            >
-                <CardItem
-                    as="h2"
-                    translateZ={40}
-                    class="text-3xl font-bold text-white mb-4"
-                >
-                    Innovative Solutions
-                </CardItem>
-                <CardItem
-                    as="p"
-                    translateZ={25}
-                    class="text-[var(--color-text-muted)] mb-6"
-                >
-                    We craft custom software solutions that drive business
-                    growth and efficiency. Our team leverages the latest
-                    technologies to deliver scalable, secure, and user-friendly
-                    applications tailored to your unique needs.
-                </CardItem>
-                <CardItem
-                    as="a"
-                    translateZ={60}
-                    href="/contact"
-                    class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 group"
-                >
-                    <span>Get in Touch</span>
-                    <svg
-                        class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </CardItem>
-            </Card3D>
+
         </div>
     </main>
 </Layout>

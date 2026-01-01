@@ -1,7 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card3D from "../components/ui/Card3D.astro";
-import CardItem from "../components/ui/CardItem.astro";
 
 const seoData = {
     title: "About Debugro - Professional Software Development Company | Founded by Mohamed Rifkan",
@@ -28,28 +26,7 @@ const team = [
     }
 ];
 
-const values = [
-    {
-        title: "Innovation",
-        icon: "🚀",
-        description: "Pushing boundaries with cutting-edge solutions"
-    },
-    {
-        title: "Quality",
-        icon: "✨",
-        description: "Delivering excellence in every line of code"
-    },
-    {
-        title: "Collaboration",
-        icon: "🤝",
-        description: "Working together to achieve exceptional results"
-    },
-    {
-        title: "Integrity",
-        icon: "🎯",
-        description: "Building trust through transparency and honesty"
-    }
-];
+
 
 
 ---
@@ -171,20 +148,27 @@ const values = [
         </section>
 
         <!-- Mission & Vision -->
-        <section class="py-16 bg-[var(--color-primary-dark)]/50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="py-20 bg-[var(--color-primary-dark)]/30 relative">
+             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-primary)]/5 to-transparent opacity-30"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid md:grid-cols-2 gap-12">
-                    <div class="bg-[var(--color-primary-dark)]/80 p-8 rounded-2xl border border-[var(--color-primary-light-dark)]/30">
+                    <div class="bg-[var(--color-primary-dark)]/60 backdrop-blur-md p-8 rounded-2xl border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/20 transition-all duration-300">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
                         <h3 class="text-2xl font-bold text-white mb-4">Our Mission</h3>
-                        <p class="text-gray-300">
+                        <p class="text-gray-400 leading-relaxed">
                             To empower businesses with innovative software solutions that drive
                             growth, efficiency, and digital transformation while maintaining the
                             highest standards of quality and security.
                         </p>
                     </div>
-                    <div class="bg-[var(--color-primary-dark)]/80 p-8 rounded-2xl border border-[var(--color-primary-light-dark)]/30">
+                    <div class="bg-[var(--color-primary-dark)]/60 backdrop-blur-md p-8 rounded-2xl border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/20 transition-all duration-300">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-6">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
                         <h3 class="text-2xl font-bold text-white mb-4">Our Vision</h3>
-                        <p class="text-gray-300">
+                        <p class="text-gray-400 leading-relaxed">
                             To become a leading software development company in Sri Lanka,
                             recognized globally for innovative solutions, technical
                             excellence, and commitment to client success.
@@ -195,55 +179,108 @@ const values = [
         </section>
 
         <!-- Values Section -->
-        <section class="py-16">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Values</h2>
+        <section class="py-20 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[var(--color-primary-dark)]/30 skew-y-3 transform origin-bottom-left"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold text-white mb-4">Our Core Values</h2>
+                    <p class="text-gray-400">The principles that guide our every decision and innovation.</p>
+                </div>
+                
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {values.map(value => (
-                        <div class="bg-[var(--color-primary-dark)]/80 p-6 rounded-xl border border-[var(--color-primary-light-dark)]/30 text-center">
-                            <div class="text-4xl mb-4">{value.icon}</div>
-                            <h3 class="text-xl font-bold text-white mb-2">{value.title}</h3>
-                            <p class="text-gray-300">{value.description}</p>
+                    {/* Innovation */}
+                    <div class="bg-[var(--color-primary-dark)]/60 backdrop-blur-md p-6 rounded-2xl border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--color-primary)]/10 group">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-500/20 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                            </svg>
                         </div>
-                    ))}
+                        <h3 class="text-xl font-bold text-white mb-3">Innovation</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Pushing boundaries with cutting-edge solutions and forward-thinking strategies.</p>
+                    </div>
+
+                    {/* Quality */}
+                    <div class="bg-[var(--color-primary-dark)]/60 backdrop-blur-md p-6 rounded-2xl border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--color-primary)]/10 group">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-6 group-hover:bg-purple-500/20 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Quality</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Delivering excellence in every line of code with rigorous testing and standards.</p>
+                    </div>
+
+                    {/* Collaboration */}
+                    <div class="bg-[var(--color-primary-dark)]/60 backdrop-blur-md p-6 rounded-2xl border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--color-primary)]/10 group">
+                        <div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center text-green-400 mb-6 group-hover:bg-green-500/20 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Collaboration</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Working together with our clients to achieve exceptional and lasting results.</p>
+                    </div>
+
+                    {/* Integrity */}
+                    <div class="bg-[var(--color-primary-dark)]/60 backdrop-blur-md p-6 rounded-2xl border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--color-primary)]/10 group">
+                        <div class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center text-red-400 mb-6 group-hover:bg-red-500/20 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Integrity</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Building trust through transparency, honesty, and ethical practices.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Team Section -->
-        <section class="py-16 bg-[var(--color-primary-dark)]/50">
+        <section class="py-20 bg-[var(--color-primary-dark)]/30">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Team</h2>
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold text-white mb-4">Meet the Team</h2>
+                    <p class="text-gray-400">The talented individuals behind our success.</p>
+                </div>
                 <div class="flex justify-center">
-                    <div class="max-w-md">
+                    <div class="max-w-md w-full">
                     {team.map(member => (
-                        <article class="bg-[var(--color-primary-dark)]/80 rounded-xl overflow-hidden border border-[var(--color-primary-light-dark)]/30 group" 
+                        <article class="bg-[var(--color-primary-dark)]/60 backdrop-blur-md rounded-2xl overflow-hidden border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/30 transition-all duration-300 group hover:shadow-xl hover:shadow-[var(--color-primary)]/10" 
                                  itemscope itemtype="https://schema.org/Person">
-                            <div class="aspect-square overflow-hidden">
+                            <div class="aspect-square overflow-hidden relative">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-primary-dark)] to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300 z-10"></div>
                                 <img
                                     src={member.image}
                                     alt={`${member.name} - ${member.role} at Debugro, Software Engineer from Sri Lanka`}
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     itemprop="image"
                                     loading="lazy"
                                     width="400"
                                     height="400"
                                 />
                             </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-white mb-1" itemprop="name">{member.name}</h3>
-                                <p class="text-[var(--color-primary)] mb-4" itemprop="jobTitle">{member.role}</p>
-                                <p class="text-gray-300 mb-4" itemprop="description">{member.bio}</p>
-                                <div class="flex flex-wrap gap-2 mb-6">
+                            <div class="p-8">
+                                <h3 class="text-2xl font-bold text-white mb-1" itemprop="name">{member.name}</h3>
+                                <p class="text-[var(--color-primary)] font-medium mb-4" itemprop="jobTitle">{member.role}</p>
+                                <p class="text-gray-400 mb-6 leading-relaxed" itemprop="description">{member.bio}</p>
+                                <div class="flex flex-wrap gap-2 mb-8">
                                     {member.skills.map(skill => (
-                                        <span class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary-light)] rounded-full text-sm" itemprop="knowsAbout">
+                                        <span class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary-light)] border border-[var(--color-primary)]/20 rounded-full text-xs font-medium" itemprop="knowsAbout">
                                             {skill}
                                         </span>
                                     ))}
                                 </div>
-                                <div class="flex gap-4">
+                                <div class="flex gap-4 pt-4 border-t border-[var(--color-primary)]/10">
                                     <a href={member.social.linkedin}
-                                        class="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
+                                        class="text-gray-500 hover:text-[#0077b5] transition-colors p-2 hover:bg-white/5 rounded-full"
                                         target="_blank" rel="noopener noreferrer"
                                         itemprop="sameAs"
                                         aria-label={`${member.name} LinkedIn Profile`}>
@@ -253,7 +290,7 @@ const values = [
                                         </svg>
                                     </a>
                                     <a href={member.social.github}
-                                        class="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
+                                        class="text-gray-500 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full"
                                         target="_blank" rel="noopener noreferrer"
                                         itemprop="sameAs"
                                         aria-label={`${member.name} GitHub Profile`}>
@@ -263,7 +300,7 @@ const values = [
                                         </svg>
                                     </a>
                                     <a href={member.social.twitter}
-                                        class="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
+                                        class="text-gray-500 hover:text-[#1DA1F2] transition-colors p-2 hover:bg-white/5 rounded-full"
                                         target="_blank" rel="noopener noreferrer"
                                         itemprop="sameAs"
                                         aria-label={`${member.name} Twitter Profile`}>
@@ -288,11 +325,84 @@ const values = [
             </div>
         </section>
 
-        <!-- Development Approach -->
-        <section class="py-16">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-white text-center mb-12">Our Approach</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Development Approach (Animated) -->
+        <section class="py-24 relative overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <h2 class="text-3xl font-bold text-white mb-4">Our Process</h2>
+                    <p class="text-gray-400">From concept to deployment, we follow a rigorous lifecycle ensuring quality and speed.</p>
+                </div>
+                
+                <div class="relative hidden lg:block">
+                    <!-- SVG Path Animation -->
+                    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1000 200">
+                        <path class="path-line" d="M100,100 C250,100 250,100 350,100 C450,100 450,100 550,100 C650,100 650,100 850,100" fill="none" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000" />
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="var(--color-primary-dark)" stop-opacity="0.2" />
+                                <stop offset="50%" stop-color="var(--color-primary)" />
+                                <stop offset="100%" stop-color="var(--color-secondary)" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+                    <div class="grid grid-cols-4 gap-4 relative z-10">
+                        <!-- Step 1: Discovery -->
+                        <div class="relative group">
+                            <div class="w-20 h-20 mx-auto bg-[var(--color-primary-dark)] rounded-full border-2 border-[var(--color-primary)]/30 group-hover:border-[var(--color-primary)] flex items-center justify-center transition-all duration-300 shadow-lg shadow-[var(--color-primary)]/10 z-10 relative">
+                                <svg class="w-8 h-8 text-[var(--color-primary)] group-hover:scale-110 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                            <div class="text-center mt-6">
+                                <h3 class="text-white font-bold text-lg mb-2">Discovery</h3>
+                                <p class="text-gray-400 text-sm">We dive deep into your requirements and business goals.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Planning -->
+                        <div class="relative group mt-12">
+                            <div class="w-20 h-20 mx-auto bg-[var(--color-primary-dark)] rounded-full border-2 border-[var(--color-primary)]/30 group-hover:border-[var(--color-primary)] flex items-center justify-center transition-all duration-300 shadow-lg shadow-[var(--color-primary)]/10 z-10 relative">
+                                <svg class="w-8 h-8 text-[var(--color-primary)] group-hover:scale-110 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                </svg>
+                            </div>
+                            <div class="text-center mt-6">
+                                <h3 class="text-white font-bold text-lg mb-2">Planning</h3>
+                                <p class="text-gray-400 text-sm">Architecting robust and scalable solutions.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Development -->
+                        <div class="relative group">
+                            <div class="w-20 h-20 mx-auto bg-[var(--color-primary-dark)] rounded-full border-2 border-[var(--color-primary)]/30 group-hover:border-[var(--color-primary)] flex items-center justify-center transition-all duration-300 shadow-lg shadow-[var(--color-primary)]/10 z-10 relative">
+                                <svg class="w-8 h-8 text-[var(--color-primary)] group-hover:scale-110 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                            </div>
+                            <div class="text-center mt-6">
+                                <h3 class="text-white font-bold text-lg mb-2">Development</h3>
+                                <p class="text-gray-400 text-sm">Writing clean, efficient, and maintainable code.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Delivery -->
+                        <div class="relative group mt-12">
+                            <div class="w-20 h-20 mx-auto bg-[var(--color-primary-dark)] rounded-full border-2 border-[var(--color-primary)]/30 group-hover:border-[var(--color-primary)] flex items-center justify-center transition-all duration-300 shadow-lg shadow-[var(--color-primary)]/10 z-10 relative">
+                                <svg class="w-8 h-8 text-[var(--color-primary)] group-hover:scale-110 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="text-center mt-6">
+                                <h3 class="text-white font-bold text-lg mb-2">Delivery</h3>
+                                <p class="text-gray-400 text-sm">Launching your product with ongoing support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile View -->
+                <div class="grid md:grid-cols-2 lg:hidden gap-8">
                     <div class="bg-[var(--color-primary-dark)]/80 p-6 rounded-xl border border-[var(--color-primary-light-dark)]/30">
                         <div class="text-[var(--color-primary)] text-2xl font-bold mb-4">01</div>
                         <h3 class="text-xl font-bold text-white mb-3">Discovery</h3>
@@ -314,32 +424,9 @@ const values = [
                         <p class="text-gray-300">Thorough testing and smooth deployment with ongoing support.</p>
                     </div>
                 </div>
+
             </div>
         </section>
-
-        {/* CTA Section with 3D Effect */}
-            <div class="mt-16 text-center">
-                <Card3D 
-                    class="inline-block p-8 rounded-2xl bg-[var(--color-primary-dark)]/50 backdrop-blur-md border-2"
-                    glowIntensity="strong"
-                >
-                    <CardItem as="h2" translateZ={50} class="text-2xl md:text-3xl font-bold text-[var(--color-primary-light)] mb-4">
-                        Ready to Transform Your Ideas into Reality?
-                    </CardItem>
-                    <CardItem as="p" translateZ={30} class="text-[var(--color-primary-light)]/80 mb-6 max-w-2xl mx-auto">
-                        Let's discuss how our team can help you achieve your digital transformation goals.
-                    </CardItem>
-                    <CardItem as="a" translateZ={80}
-                        href="/contact"
-                        class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--color-primary)]/25 transition-all duration-300 group"
-                    >
-                        <span>Get in Touch</span>
-                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </CardItem>
-                </Card3D>
-            </div>
 
         <style>
             @keyframes border-gradient {
@@ -357,6 +444,21 @@ const values = [
                 }
                 100% {
                     border-image: linear-gradient(360deg, var(--color-primary), var(--color-secondary), var(--color-primary)) 1;
+                }
+            }
+            
+            .path-line {
+                animation: draw 3s ease-in-out infinite alternate;
+            }
+
+            @keyframes draw {
+                0% {
+                    stroke-dashoffset: 1000;
+                    opacity: 0.5;
+                }
+                100% {
+                    stroke-dashoffset: 0;
+                    opacity: 1;
                 }
             }
             
